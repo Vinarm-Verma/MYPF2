@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vinarm Verma — Software Engineer & AI Enthusiast</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts: Bebas Neue, Inter, Caveat, Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@600;700&family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        canvas: '#C8D0D8',
+                        ink: '#111111',
+                        muted: '#50545A',
+                        vermilion: '#FF321F',
+                        coral: '#FF765F',
+                        signature: '#743BFF',
+                        divider: '#8B929A',
+                        surfaceMuted: '#E3E7EB',
+                    },
+                    fontFamily: {
+                        display: ['"Bebas Neue"', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        signature: ['Caveat', 'cursive'],
+                        mono: ['"Space Grotesk"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @keyframes marquee {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .animate-marquee {
+            display: flex;
+            width: 200%;
+            animation: marquee 25s linear infinite;
+        }
+
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+
+        .hero-orbit {
+            animation: orbit-float 6s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes orbit-float {
+            0%, 100% {
+                transform: translateY(0) rotate(-6deg);
+            }
+
+            50% {
+                transform: translateY(-12px) rotate(-2deg);
+            }
+        }
+
+        .project-card {
+            transform-style: preserve-3d;
+            transition: transform 350ms ease, box-shadow 350ms ease;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .project-card:hover {
+                transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-6px);
+            }
+        }
+
+        .project-card .project-name {
+            transition: transform 350ms ease, letter-spacing 350ms ease;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .project-card:hover .project-name {
+                transform: translateZ(32px) scale(1.05);
+                letter-spacing: 0.08em;
+            }
+        }
+
+        .motion-ready .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 650ms ease, transform 650ms ease;
+        }
+
+        .motion-ready .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .motion-ready .reveal-item {
+            opacity: 0;
+            transform: perspective(900px) translateY(36px) rotateX(7deg) scale(0.98);
+            transform-origin: center top;
+            transition: opacity 750ms ease, transform 750ms cubic-bezier(0.2, 0.75, 0.25, 1);
+            transition-delay: var(--reveal-delay, 0ms);
+        }
+
+        .motion-ready .reveal-item.is-visible {
+            opacity: 1;
+            transform: perspective(900px) translateY(0) rotateX(0) scale(1);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #C8D0D8;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #8B929A;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF321F;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .motion-ready .reveal-on-scroll {
+                opacity: 1;
+                transform: none;
+            }
+
+            .motion-ready .reveal-item {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            .project-card:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-[#C8D0D8] text-[#111111] font-sans antialiased selection:bg-[#FF321F] selection:text-white overflow-x-hidden">
+
+    <!-- NAVIGATION -->
+    <header
+        class="fixed top-0 left-0 w-full z-50 bg-[#C8D0D8]/90 backdrop-blur-md border-b border-[#8B929A]/30 py-4 transition-all">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div
+                    class="w-10 h-10 rounded-full bg-ink text-canvas flex items-center justify-center font-display text-2xl tracking-tight transition-transform group-hover:scale-105 group-hover:bg-vermilion">
+                    VV
+                </div>
+                <div>
+                    <span class="font-mono text-xs font-bold tracking-widest block text-ink">VINARM VERMA</span>
+                    <span class="text-[10px] tracking-wider text-muted font-medium block">B.TECH IT / HCST</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-xs font-mono font-bold tracking-widest text-ink">
+                <a href="#expertise" class="hover:text-vermilion transition-colors">EXPERTISE</a>
+                <a href="#about" class="hover:text-vermilion transition-colors">ABOUT</a>
+                <a href="#skills" class="hover:text-vermilion transition-colors">SKILLS</a>
+                <a href="#work" class="hover:text-vermilion transition-colors">WORK</a>
+                <a href="#journey" class="hover:text-vermilion transition-colors">JOURNEY</a>
+                <a href="#contact" class="hover:text-vermilion transition-colors">CONTACT</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="https://linkedin.com/in/vinarm-verma-25403433a" target="_blank" rel="noopener noreferrer"
+                    aria-label="Vinarm Verma on LinkedIn"
+                    class="w-9 h-9 rounded-full border border-ink/20 flex items-center justify-center text-ink hover:bg-ink hover:text-canvas transition-colors">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.35V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                </a>
+                <a href="https://github.com/Vinarm-Verma" target="_blank" rel="noopener noreferrer"
+                    aria-label="Vinarm Verma on GitHub"
+                    class="w-9 h-9 rounded-full border border-ink/20 flex items-center justify-center text-ink hover:bg-ink hover:text-canvas transition-colors">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 .297a12 12 0 0 0-3.79 23.4c.6.111.82-.261.82-.577v-2.234c-3.338.726-4.043-1.416-4.043-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.605-2.665-.304-5.466-1.333-5.466-5.931 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 6.004 0c2.29-1.552 3.296-1.23 3.296-1.23.655 1.652.243 2.873.12 3.176.77.84 1.235 1.911 1.235 3.221 0 4.606-3.337 5.623-6.514 5.92-.42.36-.798 1.096-.798 2.21v3.283c0 .319.216.694.825.576A12.001 12.001 0 0 0 12 .297z" />
+                    </svg>
+                </a>
+                <a href="https://www.hackerrank.com/profile/vinarmverma95" target="_blank" rel="noopener noreferrer"
+                    aria-label="Vinarm Verma on HackerRank"
+                    class="w-9 h-9 rounded-full border border-ink/20 flex items-center justify-center text-ink hover:bg-ink hover:text-canvas transition-colors">
+                    <span class="font-mono text-xs font-bold" aria-hidden="true">H</span>
+                </a>
+                <a href="https://leetcode.com/u/OytzXRbmDB/" target="_blank" rel="noopener noreferrer"
+                    aria-label="Vinarm Verma on LeetCode"
+                    class="w-9 h-9 rounded-full border border-ink/20 flex items-center justify-center text-ink hover:bg-ink hover:text-canvas transition-colors">
+                    <i data-lucide="code-xml" class="w-4 h-4" aria-hidden="true"></i>
+                </a>
+                <a href="mailto:vinarmverma95@gmail.com"
+                    class="w-9 h-9 rounded-full border border-ink/20 flex items-center justify-center text-ink hover:bg-ink hover:text-canvas transition-colors">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                </a>
+                <a href="#contact"
+                    class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-ink text-white font-mono text-xs font-bold tracking-widest hover:bg-vermilion transition-all">
+                    LET'S TALK <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative min-h-screen pt-32 pb-16 flex flex-col justify-between overflow-hidden">
+        <!-- Massive Watermark Text -->
+        <div class="absolute top-12 left-0 w-full select-none pointer-events-none z-0 overflow-hidden opacity-20">
+            <h1
+                class="font-display text-[25vw] font-black tracking-tighter text-white text-center uppercase whitespace-nowrap leading-none">
+                DEVELOPER
+            </h1>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 w-full flex-grow flex flex-col justify-center">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="w-2.5 h-2.5 rounded-full bg-vermilion animate-ping"></span>
+                <span class="font-mono text-xs font-bold tracking-widest uppercase text-muted">
+                    AVAILABLE FOR INTERNSHIPS & COLLABORATION &bull; 2024–2028
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div
+                        class="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm border border-divider/30 px-3.5 py-1.5 rounded-full shadow-sm">
+                        <span>👋</span>
+                        <span class="font-mono text-xs font-semibold tracking-wider text-ink">HI, I'M VINARM
+                            VERMA</span>
+                    </div>
+
+                    <h2
+                        class="font-display text-6xl sm:text-7xl lg:text-8xl tracking-tight leading-[0.92] text-ink uppercase">
+                        BUILDING <br />
+                        <span class="text-vermilion">INTELLIGENT</span> SYSTEMS <br />
+                        &amp; PRACTICAL SOFTWARE.
+                    </h2>
+
+                    <p class="text-muted text-base sm:text-lg max-w-xl font-normal leading-relaxed">
+                        B.Tech Information Technology student with hands-on experience across AI, data analytics, and
+                        full-stack development. Built production-ready voice automation systems, a full-stack emergency
+                        response platform, and data analytics dashboards using Python, Java, SQL, and Power BI.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4 pt-4">
+                        <a href="#work"
+                            class="px-8 py-4 rounded-full bg-ink text-white font-mono text-xs font-bold tracking-widest hover:bg-vermilion transition-all flex items-center gap-2 shadow-lg">
+                            <span>EXPLORE MY WORK</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#contact"
+                            class="px-8 py-4 rounded-full bg-white/80 border border-divider/60 text-ink font-mono text-xs font-bold tracking-widest hover:bg-white hover:border-ink transition-all">
+                            LET'S CONNECT
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 relative flex justify-center">
+                    <div class="relative w-72 h-72 sm:w-96 sm:h-96">
+                        <div
+                            class="hero-orbit absolute inset-0 rounded-full bg-gradient-to-tr from-vermilion via-coral to-amber-500 shadow-2xl transform -rotate-6 scale-95">
+                        </div>
+                        <div
+                            class="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-2xl">
+                            <img src="assets/vinarm-verma.png"
+                                alt="Vinarm Verma"
+                                class="w-full h-full object-cover filter contrast-110 grayscale-[25%] hover:grayscale-0 transition-all duration-500" />
+                        </div>
+                        <div class="absolute -bottom-6 -left-6 z-20 pointer-events-none transform -rotate-12">
+                            <span
+                                class="font-signature text-6xl sm:text-7xl text-signature drop-shadow-md select-none font-bold">Vinarm
+                                Verma</span>
+                        </div>
+                        <div
+                            class="absolute -top-3 right-0 bg-ink text-white font-mono text-[11px] font-bold tracking-widest px-4 py-1.5 rounded-full shadow-lg">
+                            SOFTWARE ENGINEER
+                        </div>
+                        <div
+                            class="absolute bottom-10 -right-6 bg-white text-ink border border-divider/50 font-mono text-[11px] font-bold tracking-widest px-4 py-1.5 rounded-full shadow-lg">
+                            AI &amp; DATA SYSTEMS
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACCORDION EXPERTISE -->
+    <section id="expertise" class="py-24 border-t border-divider/40">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <span class="font-mono text-xs font-bold tracking-widest uppercase text-vermilion block mb-2">//
+                        CORE CAPABILITIES</span>
+                    <h2
+                        class="font-display text-7xl sm:text-8xl lg:text-9xl tracking-tight leading-none text-ink uppercase">
+                        WHAT I DO</h2>
+                </div>
+                <p class="font-mono text-xs text-muted max-w-xs leading-relaxed uppercase">
+                    Engineering capabilities backed by production internships and autonomous project deployments.
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- 01 -->
+                <div class="bg-white rounded-2xl border border-divider/40 overflow-hidden">
+                    <button onclick="toggleAccordion('acc1')"
+                        class="w-full px-8 py-8 flex items-center justify-between text-left group">
+                        <div class="flex items-baseline gap-6 sm:gap-12">
+                            <span
+                                class="font-mono text-sm sm:text-base font-bold text-muted group-hover:text-vermilion">(01)</span>
+                            <h3
+                                class="font-display text-3xl sm:text-5xl lg:text-6xl tracking-tight text-ink uppercase group-hover:translate-x-1 transition-transform">
+                                SOFTWARE DEVELOPMENT</h3>
+                        </div>
+                        <div class="w-10 h-10 rounded-full border border-ink/20 flex items-center justify-center">
+                            <i data-lucide="chevron-down" id="acc1-icon"
+                                class="w-5 h-5 transition-transform duration-300"></i>
+                        </div>
+                    </button>
+                    <div id="acc1" class="px-8 pb-8 pt-2 border-t border-divider/20 sm:ml-20 max-w-3xl block">
+                        <p class="text-ink font-medium text-lg mb-2">Building reliable, maintainable backends and
+                            mission-critical APIs.</p>
+                        <p class="text-muted text-sm leading-relaxed">Developing microservices with Python, FastAPI, and
+                            Java. Specializing in secure REST APIs, scheduling routines, and optimized queries across
+                            PostgreSQL, Supabase, and MySQL.</p>
+                    </div>
+                </div>
+
+                <!-- 02 -->
+                <div class="bg-white rounded-2xl border border-divider/40 overflow-hidden">
+                    <button onclick="toggleAccordion('acc2')"
+                        class="w-full px-8 py-8 flex items-center justify-between text-left group">
+                        <div class="flex items-baseline gap-6 sm:gap-12">
+                            <span
+                                class="font-mono text-sm sm:text-base font-bold text-muted group-hover:text-vermilion">(02)</span>
+                            <h3
+                                class="font-display text-3xl sm:text-5xl lg:text-6xl tracking-tight text-ink uppercase group-hover:translate-x-1 transition-transform">
+                                ARTIFICIAL INTELLIGENCE</h3>
+                        </div>
+                        <div class="w-10 h-10 rounded-full border border-ink/20 flex items-center justify-center">
+                            <i data-lucide="chevron-down" id="acc2-icon"
+                                class="w-5 h-5 transition-transform duration-300"></i>
+                        </div>
+                    </button>
+                    <div id="acc2" class="px-8 pb-8 pt-2 border-t border-divider/20 sm:ml-20 max-w-3xl hidden">
+                        <p class="text-ink font-medium text-lg mb-2">Context-aware desktop automation and voice
+                            orchestration.</p>
+                        <p class="text-muted text-sm leading-relaxed">Building custom voice-controlled assistants with
+                            SpeechRecognition, integrating screen capture vision routines via OpenCV, and automating
+                            manual OS workflows.</p>
+                    </div>
+                </div>
+
+                <!-- 03 -->
+                <div class="bg-white rounded-2xl border border-divider/40 overflow-hidden">
+                    <button onclick="toggleAccordion('acc3')"
+                        class="w-full px-8 py-8 flex items-center justify-between text-left group">
+                        <div class="flex items-baseline gap-6 sm:gap-12">
+                            <span
+                                class="font-mono text-sm sm:text-base font-bold text-muted group-hover:text-vermilion">(03)</span>
+                            <h3
+                                class="font-display text-3xl sm:text-5xl lg:text-6xl tracking-tight text-ink uppercase group-hover:translate-x-1 transition-transform">
+                                FULL STACK WEB</h3>
+                        </div>
+                        <div class="w-10 h-10 rounded-full border border-ink/20 flex items-center justify-center">
+                            <i data-lucide="chevron-down" id="acc3-icon"
+                                class="w-5 h-5 transition-transform duration-300"></i>
+                        </div>
+                    </button>
+                    <div id="acc3" class="px-8 pb-8 pt-2 border-t border-divider/20 sm:ml-20 max-w-3xl hidden">
+                        <p class="text-ink font-medium text-lg mb-2">Responsive interactive interfaces paired with clean
+                            API layers.</p>
+                        <p class="text-muted text-sm leading-relaxed">Developing modern frontends with React.js,
+                            Tailwind CSS, and Leaflet dynamic GIS mapping for rapid spatial ambulance routing and
+                            dispatch platforms.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT & STATS -->
+    <section id="about" class="py-24 bg-[#BEC6CE]/40 border-t border-divider/40">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 text-center">
+            <span
+                class="inline-block bg-white px-4 py-1.5 rounded-full font-mono text-xs font-bold tracking-widest text-ink mb-6 shadow-sm uppercase">
+                ABOUT VINARM VERMA
+            </span>
+            <h2
+                class="font-display text-4xl sm:text-6xl lg:text-7xl tracking-tight text-ink uppercase leading-tight mb-8 max-w-4xl mx-auto">
+                TURNING RAW COMPUTATIONAL LOGIC INTO PRODUCTION READY PRODUCTS.
+            </h2>
+            <p class="text-muted text-base sm:text-lg max-w-2xl mx-auto mb-16">
+                B.Tech Information Technology student at Hindustan College of Science and Technology (2024–2028),
+                combining hands-on software and analytics experience with leadership as Senior Public Relations Head
+                at LITSOC. Winner of the National Youth Day Competition.
+            </p>
+
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-12">
+                <div
+                    class="space-y-8 text-center md:text-left border-y md:border-y-0 md:border-r border-divider/40 py-6 md:py-0 md:pr-8">
+                    <div>
+                        <span class="font-display text-7xl text-ink leading-none">07+</span>
+                        <span class="font-mono text-xs font-bold tracking-widest text-muted uppercase block mt-1">Core
+                            Tech Stacks</span>
+                    </div>
+                    <div>
+                        <span class="font-display text-7xl text-ink leading-none">02</span>
+                        <span
+                            class="font-mono text-xs font-bold tracking-widest text-muted uppercase block mt-1">Industry
+                            Internships</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center justify-center">
+                    <div class="w-56 h-56 rounded-full overflow-hidden border-4 border-white shadow-2xl relative">
+                        <img src="assets/vinarm-verma.png"
+                            alt="Vinarm" class="w-full h-full object-cover grayscale contrast-110" />
+                    </div>
+                    <span
+                        class="mt-4 px-4 py-1.5 rounded-full bg-white shadow-md font-mono text-[11px] font-bold tracking-widest text-ink">
+                        HCST &bull; CLASS OF 2028
+                    </span>
+                </div>
+
+                <div
+                    class="space-y-8 text-center md:text-right border-y md:border-y-0 md:border-l border-divider/40 py-6 md:py-0 md:pl-8">
+                    <div>
+                        <span class="font-display text-7xl text-ink leading-none">STUDENT</span>
+                        <span class="font-mono text-xs font-bold tracking-widest text-muted uppercase block mt-1">B.Tech
+                            IT Candidate</span>
+                    </div>
+                    <div>
+                        <span class="font-display text-7xl text-ink leading-none">07+</span>
+                        <span
+                            class="font-mono text-xs font-bold tracking-widest text-muted uppercase block mt-1">Verified
+                            Credentials</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="py-24 border-t border-divider/40">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="mb-14">
+                <span class="font-mono text-xs font-bold tracking-widest text-vermilion uppercase block mb-2">// ARSENAL
+                    &amp; STACK</span>
+                <h2 class="font-display text-6xl sm:text-7xl lg:text-8xl text-ink uppercase tracking-tight">TECHNICAL
+                    REPERTOIRE</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-8 rounded-2xl border border-divider/30">
+                    <span class="font-mono text-xs font-bold text-muted uppercase tracking-widest block mb-4">01 /
+                        LANGUAGES</span>
+                    <h3 class="font-display text-2xl uppercase tracking-tight text-ink mb-6">PROGRAMMING</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">Python</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">Java</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">SQL</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">Apex</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">C</span>
+                        <span
+                            class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">JavaScript</span>
+                        <span
+                            class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">HTML5</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">CSS3</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl border border-divider/30">
+                    <span class="font-mono text-xs font-bold text-muted uppercase tracking-widest block mb-4">02 /
+                        ARCHITECTURE</span>
+                    <h3 class="font-display text-2xl uppercase tracking-tight text-ink mb-6">FRAMEWORKS</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">React.js</span>
+                        <span
+                            class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">FastAPI</span>
+                        <span
+                            class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">OpenCV</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">Spring
+                            Framework</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">Tailwind
+                            CSS</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl border border-divider/30">
+                    <span class="font-mono text-xs font-bold text-muted uppercase tracking-widest block mb-4">03 /
+                        PERSISTENCE</span>
+                    <h3 class="font-display text-2xl uppercase tracking-tight text-ink mb-6">DATABASES</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">PostgreSQL</span>
+                        <span
+                            class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">Supabase</span>
+                        <span
+                            class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">MySQL</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl border border-divider/30">
+                    <span class="font-mono text-xs font-bold text-muted uppercase tracking-widest block mb-4">04 /
+                        PIPELINES</span>
+                    <h3 class="font-display text-2xl uppercase tracking-tight text-ink mb-6">DATA &amp; TOOLS</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">Power
+                            BI</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">Git /
+                            GitHub</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">REST
+                            APIs</span>
+                        <span
+                            class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">Leaflet</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">Data
+                            Analysis</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-surfaceMuted font-mono text-xs font-semibold">Database
+                            Management</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SELECTED PROJECTS -->
+    <section id="work" class="py-24 border-t border-divider/40">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <span class="font-mono text-xs font-bold tracking-widest uppercase text-vermilion block mb-2">//
+                        CASE STUDIES</span>
+                    <h2
+                        class="font-display text-7xl sm:text-8xl lg:text-9xl text-ink uppercase tracking-tight leading-none">
+                        SELECTED WORK</h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- LIFEGRID -->
+                <div
+                    class="project-card group bg-white rounded-3xl overflow-hidden border border-divider/40 shadow-sm hover:shadow-2xl transition-all">
+                    <div class="relative aspect-[16/10] overflow-hidden bg-ink flex items-center justify-center">
+                        <a href="https://github.com/Vinarm-Verma/LIFEGRID" target="_blank" rel="noopener noreferrer"
+                            aria-label="View LIFEGRID on GitHub"
+                            class="project-name font-display text-5xl sm:text-6xl font-bold tracking-wide text-white hover:text-vermilion transition-colors">
+                            LIFEGRID
+                        </a>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3
+                                class="font-display text-4xl text-ink uppercase tracking-tight group-hover:text-vermilion transition-colors">
+                                LIFEGRID</h3>
+                            <span class="font-mono text-xs font-bold text-muted">(01)</span>
+                        </div>
+                        <p class="text-muted text-sm mb-4">Emergency intelligence and coordination platform connecting
+                            citizens, healthcare facilities, and response coordinators through role-based dashboards.
+                        </p>
+                        <ul class="text-muted text-sm mb-6 list-disc pl-5 space-y-1">
+                            <li>Integrated REST APIs with dynamic Leaflet maps for resource tracking and ambulance
+                                dispatch routing.</li>
+                            <li>Centralized hospital capacity and incident updates to support faster response workflows.
+                            </li>
+                        </ul>
+                        <div
+                            class="flex flex-wrap gap-2 pt-2 border-t border-divider/20 font-mono text-[10px] font-bold uppercase">
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">React.js</span>
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">Python</span>
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">FastAPI</span>
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">PostgreSQL</span>
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">Supabase</span>
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">Leaflet</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JARVIS -->
+                <div
+                    class="project-card group bg-white rounded-3xl overflow-hidden border border-divider/40 shadow-sm hover:shadow-2xl transition-all">
+                    <div class="relative aspect-[16/10] overflow-hidden bg-ink flex items-center justify-center">
+                        <a href="https://github.com/Vinarm-Verma/JARVIS" target="_blank" rel="noopener noreferrer"
+                            aria-label="View JARVIS on GitHub"
+                            class="project-name font-display text-5xl sm:text-6xl font-bold tracking-wide text-white hover:text-vermilion transition-colors">
+                            JARVIS
+                        </a>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3
+                                class="font-display text-4xl text-ink uppercase tracking-tight group-hover:text-vermilion transition-colors">
+                                JARVIS AI</h3>
+                            <span class="font-mono text-xs font-bold text-muted">(02)</span>
+                        </div>
+                        <p class="text-muted text-sm mb-4">AI-powered voice assistant using speech recognition, OpenCV,
+                            and computer vision to enable hands-free, context-aware Windows desktop control.</p>
+                        <ul class="text-muted text-sm mb-6 list-disc pl-5 space-y-1">
+                            <li>Combined screen capture analysis with automated system commands.</li>
+                            <li>Used natural voice commands to streamline routine desktop tasks and reduce repetitive
+                                manual interactions.</li>
+                        </ul>
+                        <div
+                            class="flex flex-wrap gap-2 pt-2 border-t border-divider/20 font-mono text-[10px] font-bold uppercase">
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">Python</span>
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">Speech Recognition</span>
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">OpenCV</span>
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">Generative AI</span>
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">Windows Automation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CAMPUSMIND -->
+                <div
+                    class="project-card group bg-white rounded-3xl overflow-hidden border border-divider/40 shadow-sm hover:shadow-2xl transition-all">
+                    <div class="relative aspect-[16/10] overflow-hidden bg-ink flex items-center justify-center">
+                        <a href="https://github.com/Vinarm-Verma/CampusMIND" target="_blank" rel="noopener noreferrer"
+                            aria-label="View CampusMIND on GitHub"
+                            class="project-name font-display text-4xl sm:text-5xl font-bold tracking-wide text-white hover:text-vermilion transition-colors">
+                            CAMPUSMIND
+                        </a>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3
+                                class="font-display text-4xl text-ink uppercase tracking-tight group-hover:text-vermilion transition-colors">
+                                CAMPUSMIND</h3>
+                            <span class="font-mono text-xs font-bold text-muted">(03)</span>
+                        </div>
+                        <p class="text-muted text-sm mb-4">A campus companion that brings notices, events, deadlines,
+                            and student updates together with AI-powered chat and recommendations.</p>
+                        <ul class="text-muted text-sm mb-6 list-disc pl-5 space-y-1">
+                            <li>Built campus knowledge search and question answering with retrieval-augmented generation.</li>
+                            <li>Organized campus notices, events, deadlines, and missed updates in one platform.</li>
+                        </ul>
+                        <div
+                            class="flex flex-wrap gap-2 pt-2 border-t border-divider/20 font-mono text-[10px] font-bold uppercase">
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">React</span>
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">FastAPI</span>
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">SQLite</span>
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">ChromaDB</span>
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">RAG</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LOCAL BUSINESS APP -->
+                <div
+                    class="project-card group bg-white rounded-3xl overflow-hidden border border-divider/40 shadow-sm hover:shadow-2xl transition-all">
+                    <div class="relative aspect-[16/10] overflow-hidden bg-ink flex items-center justify-center">
+                        <a href="https://github.com/Vinarm-Verma/local-buisness-app" target="_blank" rel="noopener noreferrer"
+                            aria-label="View Local Business App on GitHub"
+                            class="project-name font-display text-3xl sm:text-4xl font-bold tracking-wide text-white hover:text-vermilion transition-colors text-center">
+                            LOCAL BUSINESS APP
+                        </a>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3
+                                class="font-display text-4xl text-ink uppercase tracking-tight group-hover:text-vermilion transition-colors">
+                                LOCAL BUSINESS APP</h3>
+                            <span class="font-mono text-xs font-bold text-muted">(04)</span>
+                        </div>
+                        <p class="text-muted text-sm mb-4">A platform for discovering nearby businesses and managing
+                            local shopping, from listings and products to orders and payments.</p>
+                        <ul class="text-muted text-sm mb-6 list-disc pl-5 space-y-1">
+                            <li>Supports location-based business discovery, business listings, and product catalogs.</li>
+                            <li>Includes customer orders, reviews, coupons, and Razorpay payment integration.</li>
+                        </ul>
+                        <div
+                            class="flex flex-wrap gap-2 pt-2 border-t border-divider/20 font-mono text-[10px] font-bold uppercase">
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">Node.js</span>
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">Express</span>
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">MongoDB</span>
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">JWT</span>
+                            <span class="px-2 py-1 bg-surfaceMuted rounded">Razorpay</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECH STRIP MARQUEE -->
+    <div class="py-8 bg-ink border-y border-divider/40 overflow-hidden select-none">
+        <div class="flex whitespace-nowrap animate-marquee">
+            <div class="flex items-center gap-8 mx-6">
+                <span class="font-display text-4xl text-white tracking-wider">PYTHON</span><span
+                    class="w-2 h-2 rounded-full bg-vermilion"></span>
+                <span class="font-display text-4xl text-white tracking-wider">FASTAPI</span><span
+                    class="w-2 h-2 rounded-full bg-vermilion"></span>
+                <span class="font-display text-4xl text-white tracking-wider">REACT.JS</span><span
+                    class="w-2 h-2 rounded-full bg-vermilion"></span>
+                <span class="font-display text-4xl text-white tracking-wider">POSTGRESQL</span><span
+                    class="w-2 h-2 rounded-full bg-vermilion"></span>
+                <span class="font-display text-4xl text-white tracking-wider">SUPABASE</span><span
+                    class="w-2 h-2 rounded-full bg-vermilion"></span>
+                <span class="font-display text-4xl text-white tracking-wider">POWER BI</span><span
+                    class="w-2 h-2 rounded-full bg-vermilion"></span>
+                <span class="font-display text-4xl text-white tracking-wider">OPENCV</span><span
+                    class="w-2 h-2 rounded-full bg-vermilion"></span>
+            </div>
+            <div class="flex items-center gap-8 mx-6">
+                <span class="font-display text-4xl text-white tracking-wider">PYTHON</span><span
+                    class="w-2 h-2 rounded-full bg-vermilion"></span>
+                <span class="font-display text-4xl text-white tracking-wider">FASTAPI</span><span
+                    class="w-2 h-2 rounded-full bg-vermilion"></span>
+                <span class="font-display text-4xl text-white tracking-wider">REACT.JS</span><span
+                    class="w-2 h-2 rounded-full bg-vermilion"></span>
+                <span class="font-display text-4xl text-white tracking-wider">POSTGRESQL</span><span
+                    class="w-2 h-2 rounded-full bg-vermilion"></span>
+                <span class="font-display text-4xl text-white tracking-wider">SUPABASE</span><span
+                    class="w-2 h-2 rounded-full bg-vermilion"></span>
+                <span class="font-display text-4xl text-white tracking-wider">POWER BI</span><span
+                    class="w-2 h-2 rounded-full bg-vermilion"></span>
+                <span class="font-display text-4xl text-white tracking-wider">OPENCV</span><span
+                    class="w-2 h-2 rounded-full bg-vermilion"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXPERIENCE & EDUCATION -->
+    <section id="journey" class="py-24 border-t border-divider/40">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="mb-16">
+                <span class="font-mono text-xs font-bold tracking-widest text-vermilion uppercase block mb-2">// TRACK
+                    RECORD</span>
+                <h2 class="font-display text-6xl sm:text-7xl lg:text-8xl text-ink uppercase tracking-tight">EXPERIENCE
+                    &amp; HONORS</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="bg-white p-8 rounded-2xl border border-divider/30">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h4 class="font-display text-3xl uppercase text-ink">Summer Intern &bull; <span
+                                    class="text-vermilion">Decodelabs</span></h4>
+                            <span class="font-mono text-xs font-bold px-3 py-1 bg-surfaceMuted rounded-full">May 2026 –
+                                Present</span>
+                        </div>
+                        <p class="font-mono text-xs text-muted mb-4">Agra, Uttar Pradesh</p>
+                        <ul class="text-sm text-ink/80 list-disc pl-5 space-y-1">
+                            <li>Architected AI-driven applications and Python scripts to automate operational workflows
+                                and data processing.</li>
+                            <li>Implemented machine learning models and analytical routines to support more accurate
+                                decisions and faster execution.</li>
+                            <li>Engineered structured solutions for real-time data processing and improved internal
+                                algorithmic logic.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl border border-divider/30">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h4 class="font-display text-3xl uppercase text-ink">Engineer Intern &bull; <span
+                                    class="text-vermilion">Codec Technologies</span></h4>
+                            <span class="font-mono text-xs font-bold px-3 py-1 bg-surfaceMuted rounded-full">Jun 2026 –
+                                Jul 2026</span>
+                        </div>
+                        <p class="font-mono text-xs text-muted mb-4">Agra, Uttar Pradesh</p>
+                        <ul class="text-sm text-ink/80 list-disc pl-5 space-y-1">
+                            <li>Preprocessed data and automated cleaning procedures to optimize machine learning
+                                algorithms.</li>
+                            <li>Built Python scripts to streamline administrative workflows and dataset transformations.
+                            </li>
+                            <li>Collaborated with engineering teams to evaluate model metrics and improve data
+                                pipelines.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl border border-divider/30">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h4 class="font-display text-3xl uppercase text-ink">Senior Public Relations Head &bull;
+                                <span class="text-vermilion">LITSOC</span>
+                            </h4>
+                            <span class="font-mono text-xs font-bold px-3 py-1 bg-surfaceMuted rounded-full">Aug 2026 –
+                                Present</span>
+                        </div>
+                        <p class="font-mono text-xs text-muted mb-4">Agra, Uttar Pradesh</p>
+                        <ul class="text-sm text-ink/80 list-disc pl-5 space-y-1">
+                            <li>Lead public relations operations and engagement strategy for campus-wide events.</li>
+                            <li>Coordinate promotional outreach and event logistics for institutional initiatives and
+                                inter-college competitions.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="bg-white p-8 rounded-2xl border border-divider/30 space-y-4">
+                        <h3
+                            class="font-mono text-xs font-bold tracking-widest text-ink uppercase flex items-center gap-2 mb-4">
+                            <i data-lucide="award" class="text-vermilion w-4 h-4"></i>
+                            <span>VERIFIED CERTIFICATIONS</span>
+                        </h3>
+
+                        <div class="p-3 bg-surfaceMuted/50 rounded-xl">
+                            <p class="font-bold text-sm">AWS Certifications</p>
+                            <p class="text-xs text-muted">Amazon Web Services &bull; Sep 2026</p>
+                        </div>
+                        <div class="p-3 bg-surfaceMuted/50 rounded-xl">
+                            <p class="font-bold text-sm">AI Foundations</p>
+                            <p class="text-xs text-muted">OpenAI &bull; Sep 2026 (ID: 195326344)</p>
+                        </div>
+                        <div class="p-3 bg-surfaceMuted/50 rounded-xl">
+                            <p class="font-bold text-sm">Generative AI</p>
+                            <p class="text-xs text-muted">TCS iON &bull; Jun 2026 (ID: 277212-31014904-1016)</p>
+                        </div>
+                        <div class="p-3 bg-surfaceMuted/50 rounded-xl">
+                            <p class="font-bold text-sm">Data Analytics and Job Simulation</p>
+                            <p class="text-xs text-muted">Deloitte &bull; Jul 2026 (ID: FW7q7S47Zu3CbckcF)</p>
+                        </div>
+                        <div class="p-3 bg-surfaceMuted/50 rounded-xl">
+                            <p class="font-bold text-sm">Gen AI Powered Data Analytics</p>
+                            <p class="text-xs text-muted">Tata Group &bull; Jul 2026 (ID: 6a5ee66fcfc7cbacb761d94c)</p>
+                        </div>
+                        <div class="p-3 bg-surfaceMuted/50 rounded-xl">
+                            <p class="font-bold text-sm">Power BI Workshop</p>
+                            <p class="text-xs text-muted">Be10x &bull; Jan 2026 (ID:
+                                36a28147-6eed-47a5-8342-e5f926ebba61905111)</p>
+                        </div>
+                        <div class="p-3 bg-surfaceMuted/50 rounded-xl">
+                            <p class="font-bold text-sm">AI Fundamentals: Foundation for Understanding AI</p>
+                            <p class="text-xs text-muted">IBM SkillsBuild &bull; Sep 2026</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl border border-divider/30 space-y-4">
+                        <h3
+                            class="font-mono text-xs font-bold tracking-widest text-ink uppercase flex items-center gap-2 mb-4">
+                            <i data-lucide="graduation-cap" class="text-vermilion w-4 h-4"></i>
+                            <span>EDUCATION</span>
+                        </h3>
+                        <div class="p-3 bg-surfaceMuted/50 rounded-xl">
+                            <p class="font-bold text-sm">B.Tech, Information Technology</p>
+                            <p class="text-xs text-muted">Hindustan College of Science and Technology, Mathura &bull;
+                                2024–2028</p>
+                            <p class="text-xs text-muted mt-1">Senior PR Head, LITSOC; National Youth Day Competition
+                                Winner</p>
+                        </div>
+                        <div class="p-3 bg-surfaceMuted/50 rounded-xl">
+                            <p class="font-bold text-sm">Class XII, PCM &bull; 82.9%</p>
+                            <p class="text-xs text-muted">Holy Public School, Agra &bull; 2022–2024</p>
+                            <p class="text-xs text-muted mt-1">House Captain and Club President</p>
+                        </div>
+                        <div class="p-3 bg-surfaceMuted/50 rounded-xl">
+                            <p class="font-bold text-sm">Class X &bull; 81.3%</p>
+                            <p class="text-xs text-muted">Holy Public School, Agra &bull; 2020–2022</p>
+                            <p class="text-xs text-muted mt-1">Class Representative and Skating Team Captain</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl border border-divider/30">
+                        <h3
+                            class="font-mono text-xs font-bold tracking-widest text-ink uppercase flex items-center gap-2">
+                            <i data-lucide="trophy" class="text-vermilion w-4 h-4"></i>
+                            <span>ACHIEVEMENT</span>
+                        </h3>
+                        <p class="mt-4 text-sm font-bold">Winner — National Youth Day Competition</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-24 border-t border-divider/40">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="mb-16">
+                <span class="font-mono text-xs font-bold tracking-widest text-vermilion uppercase block mb-2">// GET IN
+                    TOUCH</span>
+                <h2
+                    class="font-display text-7xl sm:text-8xl lg:text-9xl text-ink uppercase tracking-tight leading-none">
+                    LET'S CONNECT</h2>
+            </div>
+
+            <div
+                class="grid grid-cols-1 lg:grid-cols-12 rounded-3xl overflow-hidden border border-divider/40 shadow-xl bg-white">
+                <div
+                    class="lg:col-span-5 bg-gradient-to-br from-vermilion to-coral p-10 sm:p-14 text-white flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-display text-5xl uppercase tracking-tight leading-none">HAVE A PROJECT IN MIND?
+                        </h3>
+                        <p class="mt-4 text-white/90 text-sm leading-relaxed">
+                            Open to technical internships, applied AI engineering roles, and collaborative development.
+                        </p>
+                    </div>
+                    <div class="my-8 w-36 h-36 rounded-full overflow-hidden border-4 border-white/40">
+                        <img src="assets/vinarm-verma.png"
+                            alt="Vinarm Verma" class="w-full h-full object-cover grayscale" />
+                    </div>
+                    <div class="space-y-1 font-mono text-xs">
+                        <p class="font-bold">Agra, Uttar Pradesh, India</p>
+                        <p><a href="mailto:vinarmverma95@gmail.com" class="hover:underline">vinarmverma95@gmail.com</a>
+                        </p>
+                        <p><a href="tel:+919045661289" class="hover:underline">+91 90456 61289</a></p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 p-10 sm:p-14">
+                    <form onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        <div id="form-feedback"
+                            class="hidden p-4 rounded-xl bg-emerald-100 text-emerald-800 text-xs font-mono">
+                            Message dispatched successfully! Vinarm will respond within 24 hours.
+                        </div>
+                        <div>
+                            <label class="block font-mono text-xs font-bold text-ink uppercase mb-2">YOUR NAME</label>
+                            <input type="text" required
+                                class="w-full px-4 py-3 bg-surfaceMuted/50 border border-divider/40 rounded-xl text-ink text-sm outline-none focus:border-ink" />
+                        </div>
+                        <div>
+                            <label class="block font-mono text-xs font-bold text-ink uppercase mb-2">YOUR EMAIL</label>
+                            <input type="email" required
+                                class="w-full px-4 py-3 bg-surfaceMuted/50 border border-divider/40 rounded-xl text-ink text-sm outline-none focus:border-ink" />
+                        </div>
+                        <div>
+                            <label class="block font-mono text-xs font-bold text-ink uppercase mb-2">MESSAGE</label>
+                            <textarea rows="4" required
+                                class="w-full px-4 py-3 bg-surfaceMuted/50 border border-divider/40 rounded-xl text-ink text-sm outline-none focus:border-ink resize-none"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full py-4 rounded-full bg-ink text-white font-mono text-xs font-bold tracking-widest hover:bg-vermilion transition-colors">
+                            TRANSMIT MESSAGE
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#BEC6CE]/50 border-t border-divider/40 py-12">
+        <div
+            class="max-w-7xl mx-auto px-6 sm:px-8 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-muted gap-4">
+            <div>&copy; <span id="year"></span> VINARM VERMA &bull; ALL RIGHTS RESERVED</div>
+            <a href="#hero" class="hover:text-ink font-bold">BACK TO TOP &uarr;</a>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Set Copyright Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Reveal sections and stagger their content as it enters the viewport.
+        const revealSections = document.querySelectorAll('section:not(#hero)');
+        const revealGroups = [
+            document.querySelectorAll('#expertise .space-y-4 > div'),
+            document.querySelectorAll('#about .max-w-5xl > div'),
+            document.querySelectorAll('#skills .grid > div'),
+            document.querySelectorAll('#work .project-card'),
+            document.querySelectorAll('#journey .grid > div > .bg-white'),
+            document.querySelectorAll('section:not(#hero) h2')
+        ];
+        if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.classList.add('motion-ready');
+            revealSections.forEach((target) => target.classList.add('reveal-on-scroll'));
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -4% 0px' });
+
+            revealSections.forEach((target) => revealObserver.observe(target));
+
+            revealGroups.forEach((group) => {
+                group.forEach((target, index) => {
+                    target.classList.add('reveal-item');
+                    target.style.setProperty('--reveal-delay', `${Math.min(index * 100, 500)}ms`);
+                    revealObserver.observe(target);
+                });
+            });
+        }
+
+        // Accordion Toggle Logic
+        function toggleAccordion(id) {
+            const el = document.getElementById(id);
+            const icon = document.getElementById(id + '-icon');
+            if (el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+                el.classList.add('block');
+                icon.classList.add('rotate-180');
+            } else {
+                el.classList.remove('block');
+                el.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Form submission feedback
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            document.getElementById('form-feedback').classList.remove('hidden');
+            e.target.reset();
+        }
+    </script>
+</body>
+
+</html>
