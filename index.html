@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vinarm Verma â€” Software Engineer & AI Enthusiast</title>
+    <title>Vinarm Verma &mdash; Software Engineer &amp; AI Enthusiast</title>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -44,7 +44,43 @@
         }
     </script>
 
+    <link rel="stylesheet" href="assets/hero/hero.css">
+    <script>
+        (function () {
+            var d = document.documentElement;
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                d.classList.add('hero-pending');
+                setTimeout(function () { d.classList.remove('hero-pending'); }, 16000);
+            }
+        })();
+    </script>
+
     <style>
+        @keyframes edge-glow {
+            0%, 100% {
+                opacity: 0.7;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 6px;
+            z-index: 60;
+            pointer-events: none;
+            background:
+                linear-gradient(90deg, rgba(255, 50, 31, 0.25), rgba(255, 50, 31, 0.95), rgba(116, 59, 255, 0.95), rgba(116, 59, 255, 0.25)) top / 100% 2px no-repeat,
+                linear-gradient(90deg, rgba(116, 59, 255, 0.25), rgba(116, 59, 255, 0.95), rgba(255, 118, 95, 0.95), rgba(255, 118, 95, 0.25)) bottom / 100% 2px no-repeat,
+                linear-gradient(180deg, rgba(255, 50, 31, 0.25), rgba(255, 50, 31, 0.9), rgba(116, 59, 255, 0.9), rgba(116, 59, 255, 0.25)) left / 2px 100% no-repeat,
+                linear-gradient(180deg, rgba(116, 59, 255, 0.25), rgba(116, 59, 255, 0.9), rgba(255, 118, 95, 0.9), rgba(255, 118, 95, 0.25)) right / 2px 100% no-repeat;
+            filter: drop-shadow(0 0 8px rgba(255, 50, 31, 0.7)) drop-shadow(0 0 18px rgba(116, 59, 255, 0.55));
+            animation: edge-glow 5s ease-in-out infinite;
+        }
+
         @keyframes marquee {
             0% {
                 transform: translateX(0%);
@@ -104,26 +140,34 @@
 
         .motion-ready .reveal-on-scroll {
             opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 650ms ease, transform 650ms ease;
+            transform: perspective(1200px) translateY(36px);
+            transition: opacity 700ms ease, transform 850ms cubic-bezier(0.2, 0.75, 0.25, 1);
         }
 
         .motion-ready .reveal-on-scroll.is-visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: perspective(1200px) translateY(0);
         }
 
         .motion-ready .reveal-item {
             opacity: 0;
-            transform: perspective(900px) translateY(36px) rotateX(7deg) scale(0.98);
+            filter: blur(5px);
+            transform: perspective(1200px) translateY(76px) rotateX(16deg) rotateY(var(--reveal-rotate, 0deg)) scale(0.94);
             transform-origin: center top;
-            transition: opacity 750ms ease, transform 750ms cubic-bezier(0.2, 0.75, 0.25, 1);
+            transition: opacity 800ms ease, filter 800ms ease, transform 900ms cubic-bezier(0.2, 0.75, 0.25, 1);
             transition-delay: var(--reveal-delay, 0ms);
         }
 
         .motion-ready .reveal-item.is-visible {
             opacity: 1;
-            transform: perspective(900px) translateY(0) rotateX(0) scale(1);
+            filter: blur(0);
+            transform: none;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .motion-ready .reveal-item.is-visible.project-card:hover {
+                transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-6px);
+            }
         }
 
         ::-webkit-scrollbar {
@@ -144,6 +188,11 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
+            body::before {
+                animation: none;
+                opacity: 0.8;
+            }
+
             *,
             *::before,
             *::after {
@@ -161,6 +210,7 @@
             .motion-ready .reveal-item {
                 opacity: 1;
                 transform: none;
+                filter: none;
                 transition: none;
             }
 
@@ -235,87 +285,14 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section id="hero" class="relative min-h-screen pt-32 pb-16 flex flex-col justify-between overflow-hidden">
-        <!-- Massive Watermark Text -->
-        <div class="absolute top-12 left-0 w-full select-none pointer-events-none z-0 overflow-hidden opacity-20">
-            <h1
-                class="font-display text-[25vw] font-black tracking-tighter text-white text-center uppercase whitespace-nowrap leading-none">
-                DEVELOPER
-            </h1>
-        </div>
-
-        <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 w-full flex-grow flex flex-col justify-center">
-            <div class="flex items-center gap-3 mb-8">
-                <span class="w-2.5 h-2.5 rounded-full bg-vermilion animate-ping"></span>
-                <span class="font-mono text-xs font-bold tracking-widest uppercase text-muted">
-                    AVAILABLE FOR INTERNSHIPS & COLLABORATION &bull; 2024â€“2028
-                </span>
+    <!-- HERO SECTION: dealt-card wheel (React + Motion + CSS 3D). Source: assets/hero/ -->
+    <section id="hero" class="relative">
+        <div id="hero-root"></div>
+        <noscript>
+            <div class="max-w-7xl mx-auto px-6 sm:px-8 pt-16 pb-16">
+                <h2 class="font-display text-6xl sm:text-7xl tracking-tight leading-[0.92] text-ink uppercase">BUILDING <span class="text-vermilion">INTELLIGENT</span> SYSTEMS &amp; PRACTICAL SOFTWARE.</h2>
             </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                <div class="lg:col-span-7 space-y-6">
-                    <div
-                        class="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm border border-divider/30 px-3.5 py-1.5 rounded-full shadow-sm">
-                        <span>ðŸ‘‹</span>
-                        <span class="font-mono text-xs font-semibold tracking-wider text-ink">HI, I'M VINARM
-                            VERMA</span>
-                    </div>
-
-                    <h2
-                        class="font-display text-6xl sm:text-7xl lg:text-8xl tracking-tight leading-[0.92] text-ink uppercase">
-                        BUILDING <br />
-                        <span class="text-vermilion">INTELLIGENT</span> SYSTEMS <br />
-                        &amp; PRACTICAL SOFTWARE.
-                    </h2>
-
-                    <p class="text-muted text-base sm:text-lg max-w-xl font-normal leading-relaxed">
-                        B.Tech Information Technology student with hands-on experience across AI, data analytics, and
-                        full-stack development. Built production-ready voice automation systems, a full-stack emergency
-                        response platform, and data analytics dashboards using Python, Java, SQL, and Power BI.
-                    </p>
-
-                    <div class="flex flex-wrap items-center gap-4 pt-4">
-                        <a href="#work"
-                            class="px-8 py-4 rounded-full bg-ink text-white font-mono text-xs font-bold tracking-widest hover:bg-vermilion transition-all flex items-center gap-2 shadow-lg">
-                            <span>EXPLORE MY WORK</span>
-                            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-                        </a>
-                        <a href="#contact"
-                            class="px-8 py-4 rounded-full bg-white/80 border border-divider/60 text-ink font-mono text-xs font-bold tracking-widest hover:bg-white hover:border-ink transition-all">
-                            LET'S CONNECT
-                        </a>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-5 relative flex justify-center">
-                    <div class="relative w-72 h-72 sm:w-96 sm:h-96">
-                        <div
-                            class="hero-orbit absolute inset-0 rounded-full bg-gradient-to-tr from-vermilion via-coral to-amber-500 shadow-2xl transform -rotate-6 scale-95">
-                        </div>
-                        <div
-                            class="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-2xl">
-                            <img src="/assets/vinarm-verma.png"
-                                alt="Vinarm Verma"
-                                class="w-full h-full object-cover filter contrast-110 grayscale-[25%] hover:grayscale-0 transition-all duration-500" />
-                        </div>
-                        <div class="absolute -bottom-6 -left-6 z-20 pointer-events-none transform -rotate-12">
-                            <span
-                                class="font-signature text-6xl sm:text-7xl text-signature drop-shadow-md select-none font-bold">Vinarm
-                                Verma</span>
-                        </div>
-                        <div
-                            class="absolute -top-3 right-0 bg-ink text-white font-mono text-[11px] font-bold tracking-widest px-4 py-1.5 rounded-full shadow-lg">
-                            SOFTWARE ENGINEER
-                        </div>
-                        <div
-                            class="absolute bottom-10 -right-6 bg-white text-ink border border-divider/50 font-mono text-[11px] font-bold tracking-widest px-4 py-1.5 rounded-full shadow-lg">
-                            AI &amp; DATA SYSTEMS
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </noscript>
     </section>
 
     <!-- ACCORDION EXPERTISE -->
@@ -330,7 +307,7 @@
                         WHAT I DO</h2>
                 </div>
                 <p class="font-mono text-xs text-muted max-w-xs leading-relaxed uppercase">
-                    Engineering capabilities backed by production internships and autonomous project deployments.
+                    I apply my engineering skills through industry internships and independently built projects.
                 </p>
             </div>
 
@@ -354,9 +331,9 @@
                     <div id="acc1" class="px-8 pb-8 pt-2 border-t border-divider/20 sm:ml-20 max-w-3xl block">
                         <p class="text-ink font-medium text-lg mb-2">Building reliable, maintainable backends and
                             mission-critical APIs.</p>
-                        <p class="text-muted text-sm leading-relaxed">Developing microservices with Python, FastAPI, and
-                            Java. Specializing in secure REST APIs, scheduling routines, and optimized queries across
-                            PostgreSQL, Supabase, and MySQL.</p>
+                        <p class="text-muted text-sm leading-relaxed">I develop microservices using Python, FastAPI, and
+                            Java, and specialize in secure REST APIs, scheduling workflows, and optimized queries
+                            across PostgreSQL, Supabase, and MySQL.</p>
                     </div>
                 </div>
 
@@ -377,11 +354,11 @@
                         </div>
                     </button>
                     <div id="acc2" class="px-8 pb-8 pt-2 border-t border-divider/20 sm:ml-20 max-w-3xl hidden">
-                        <p class="text-ink font-medium text-lg mb-2">Context-aware desktop automation and voice
-                            orchestration.</p>
-                        <p class="text-muted text-sm leading-relaxed">Building custom voice-controlled assistants with
-                            SpeechRecognition, integrating screen capture vision routines via OpenCV, and automating
-                            manual OS workflows.</p>
+                        <p class="text-ink font-medium text-lg mb-2">I build context-aware desktop automation and voice
+                            orchestration tools.</p>
+                        <p class="text-muted text-sm leading-relaxed">I build custom voice-controlled assistants with
+                            SpeechRecognition, use OpenCV for screen capture and computer vision, and automate
+                            operating-system workflows.</p>
                     </div>
                 </div>
 
@@ -394,7 +371,7 @@
                                 class="font-mono text-sm sm:text-base font-bold text-muted group-hover:text-vermilion">(03)</span>
                             <h3
                                 class="font-display text-3xl sm:text-5xl lg:text-6xl tracking-tight text-ink uppercase group-hover:translate-x-1 transition-transform">
-                                FULL STACK WEB</h3>
+                                FULL-STACK WEB DEVELOPMENT</h3>
                         </div>
                         <div class="w-10 h-10 rounded-full border border-ink/20 flex items-center justify-center">
                             <i data-lucide="chevron-down" id="acc3-icon"
@@ -402,11 +379,11 @@
                         </div>
                     </button>
                     <div id="acc3" class="px-8 pb-8 pt-2 border-t border-divider/20 sm:ml-20 max-w-3xl hidden">
-                        <p class="text-ink font-medium text-lg mb-2">Responsive interactive interfaces paired with clean
-                            API layers.</p>
-                        <p class="text-muted text-sm leading-relaxed">Developing modern frontends with React.js,
-                            Tailwind CSS, and Leaflet dynamic GIS mapping for rapid spatial ambulance routing and
-                            dispatch platforms.</p>
+                        <p class="text-ink font-medium text-lg mb-2">I build responsive, interactive interfaces and pair
+                            them with clean API layers.</p>
+                        <p class="text-muted text-sm leading-relaxed">I build modern front ends with React.js and
+                            Tailwind CSS, using Leaflet for dynamic GIS mapping in ambulance-routing and dispatch
+                            platforms.</p>
                     </div>
                 </div>
             </div>
@@ -422,12 +399,12 @@
             </span>
             <h2
                 class="font-display text-4xl sm:text-6xl lg:text-7xl tracking-tight text-ink uppercase leading-tight mb-8 max-w-4xl mx-auto">
-                TURNING RAW COMPUTATIONAL LOGIC INTO PRODUCTION READY PRODUCTS.
+                TURNING RAW COMPUTATIONAL LOGIC INTO PRODUCTION-READY PRODUCTS.
             </h2>
             <p class="text-muted text-base sm:text-lg max-w-2xl mx-auto mb-16">
-                B.Tech Information Technology student at Hindustan College of Science and Technology (2024â€“2028),
-                combining hands-on software and analytics experience with leadership as Senior Public Relations Head
-                at LITSOC. Winner of the National Youth Day Competition.
+                As an Information Technology student at Hindustan College of Science and Technology (2024&ndash;2028),
+                I combine hands-on experience in software and analytics with campus leadership as the Senior Public
+                Relations Head at LITSOC. I also won the National Youth Day Competition.
             </p>
 
             <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-12">
@@ -436,7 +413,7 @@
                     <div>
                         <span class="font-display text-7xl text-ink leading-none">07+</span>
                         <span class="font-mono text-xs font-bold tracking-widest text-muted uppercase block mt-1">Core
-                            Tech Stacks</span>
+                            Technologies</span>
                     </div>
                     <div>
                         <span class="font-display text-7xl text-ink leading-none">02</span>
@@ -448,8 +425,8 @@
 
                 <div class="flex flex-col items-center justify-center">
                     <div class="w-56 h-56 rounded-full overflow-hidden border-4 border-white shadow-2xl relative">
-                        <img src="/assets/vinarm-verma.png"
-                            alt="Vinarm" class="w-full h-full object-cover grayscale contrast-110" />
+                        <img src="assets/vinarm-verma.png"
+                            alt="Portrait of Vinarm Verma" class="w-full h-full object-cover" />
                     </div>
                     <span
                         class="mt-4 px-4 py-1.5 rounded-full bg-white shadow-md font-mono text-[11px] font-bold tracking-widest text-ink">
@@ -462,7 +439,7 @@
                     <div>
                         <span class="font-display text-7xl text-ink leading-none">STUDENT</span>
                         <span class="font-mono text-xs font-bold tracking-widest text-muted uppercase block mt-1">B.Tech
-                            IT Candidate</span>
+                            IT Student</span>
                     </div>
                     <div>
                         <span class="font-display text-7xl text-ink leading-none">07+</span>
@@ -596,8 +573,8 @@
                         </p>
                         <ul class="text-muted text-sm mb-6 list-disc pl-5 space-y-1">
                             <li>Integrated REST APIs with dynamic Leaflet maps for resource tracking and ambulance
-                                dispatch routing.</li>
-                            <li>Centralized hospital capacity and incident updates to support faster response workflows.
+                                dispatch.</li>
+                            <li>Centralized hospital capacity and incident updates to support faster response times.
                             </li>
                         </ul>
                         <div
@@ -629,12 +606,13 @@
                                 JARVIS AI</h3>
                             <span class="font-mono text-xs font-bold text-muted">(02)</span>
                         </div>
-                        <p class="text-muted text-sm mb-4">AI-powered voice assistant using speech recognition, OpenCV,
-                            and computer vision to enable hands-free, context-aware Windows desktop control.</p>
+                        <p class="text-muted text-sm mb-4">An AI-powered voice assistant that uses speech recognition
+                            and OpenCV-based computer vision to enable hands-free, context-aware control of a Windows
+                            desktop.</p>
                         <ul class="text-muted text-sm mb-6 list-disc pl-5 space-y-1">
-                            <li>Combined screen capture analysis with automated system commands.</li>
-                            <li>Used natural voice commands to streamline routine desktop tasks and reduce repetitive
-                                manual interactions.</li>
+                            <li>Combined screen-capture analysis with automated system commands.</li>
+                            <li>Used natural-language voice commands to streamline routine desktop tasks and reduce
+                                repetitive manual work.</li>
                         </ul>
                         <div
                             class="flex flex-wrap gap-2 pt-2 border-t border-divider/20 font-mono text-[10px] font-bold uppercase">
@@ -664,11 +642,11 @@
                                 CAMPUSMIND</h3>
                             <span class="font-mono text-xs font-bold text-muted">(03)</span>
                         </div>
-                        <p class="text-muted text-sm mb-4">A campus companion that brings notices, events, deadlines,
-                            and student updates together with AI-powered chat and recommendations.</p>
+                        <p class="text-muted text-sm mb-4">A campus companion that brings together notices, events,
+                            deadlines, and student updates with AI-powered chat and recommendations.</p>
                         <ul class="text-muted text-sm mb-6 list-disc pl-5 space-y-1">
-                            <li>Built campus knowledge search and question answering with retrieval-augmented generation.</li>
-                            <li>Organized campus notices, events, deadlines, and missed updates in one platform.</li>
+                            <li>Built a campus knowledge-search and question-answering system using retrieval-augmented generation.</li>
+                            <li>Organized campus notices, events, deadlines, and updates in one platform.</li>
                         </ul>
                         <div
                             class="flex flex-wrap gap-2 pt-2 border-t border-divider/20 font-mono text-[10px] font-bold uppercase">
@@ -698,11 +676,11 @@
                                 LOCAL BUSINESS APP</h3>
                             <span class="font-mono text-xs font-bold text-muted">(04)</span>
                         </div>
-                        <p class="text-muted text-sm mb-4">A platform for discovering nearby businesses and managing
-                            local shopping, from listings and products to orders and payments.</p>
+                        <p class="text-muted text-sm mb-4">A platform for discovering nearby businesses and shopping
+                            locally, with business listings, product catalogs, orders, and payments.</p>
                         <ul class="text-muted text-sm mb-6 list-disc pl-5 space-y-1">
-                            <li>Supports location-based business discovery, business listings, and product catalogs.</li>
-                            <li>Includes customer orders, reviews, coupons, and Razorpay payment integration.</li>
+                            <li>Supports location-based business discovery, listings, and product catalogs.</li>
+                            <li>Includes customer orders, reviews, coupons, and Razorpay payments.</li>
                         </ul>
                         <div
                             class="flex flex-wrap gap-2 pt-2 border-t border-divider/20 font-mono text-[10px] font-bold uppercase">
@@ -772,7 +750,7 @@
                         <div class="flex justify-between items-baseline mb-2">
                             <h4 class="font-display text-3xl uppercase text-ink">Summer Intern &bull; <span
                                     class="text-vermilion">Decodelabs</span></h4>
-                            <span class="font-mono text-xs font-bold px-3 py-1 bg-surfaceMuted rounded-full">May 2026 â€“
+                            <span class="font-mono text-xs font-bold px-3 py-1 bg-surfaceMuted rounded-full">May 2026 &ndash;
                                 Present</span>
                         </div>
                         <p class="font-mono text-xs text-muted mb-4">Agra, Uttar Pradesh</p>
@@ -781,8 +759,8 @@
                                 and data processing.</li>
                             <li>Implemented machine learning models and analytical routines to support more accurate
                                 decisions and faster execution.</li>
-                            <li>Engineered structured solutions for real-time data processing and improved internal
-                                algorithmic logic.</li>
+                            <li>Built structured solutions for real-time data processing and improved internal
+                                algorithms.</li>
                         </ul>
                     </div>
 
@@ -790,16 +768,16 @@
                         <div class="flex justify-between items-baseline mb-2">
                             <h4 class="font-display text-3xl uppercase text-ink">Engineer Intern &bull; <span
                                     class="text-vermilion">Codec Technologies</span></h4>
-                            <span class="font-mono text-xs font-bold px-3 py-1 bg-surfaceMuted rounded-full">Jun 2026 â€“
+                            <span class="font-mono text-xs font-bold px-3 py-1 bg-surfaceMuted rounded-full">Jun 2026 &ndash;
                                 Jul 2026</span>
                         </div>
                         <p class="font-mono text-xs text-muted mb-4">Agra, Uttar Pradesh</p>
                         <ul class="text-sm text-ink/80 list-disc pl-5 space-y-1">
-                            <li>Preprocessed data and automated cleaning procedures to optimize machine learning
+                            <li>Preprocessed data and automated data-cleaning workflows to optimize machine-learning
                                 algorithms.</li>
-                            <li>Built Python scripts to streamline administrative workflows and dataset transformations.
+                            <li>Built Python scripts to streamline administrative workflows and transform datasets.
                             </li>
-                            <li>Collaborated with engineering teams to evaluate model metrics and improve data
+                            <li>Collaborated with engineering teams to evaluate model performance and improve data
                                 pipelines.</li>
                         </ul>
                     </div>
@@ -809,7 +787,7 @@
                             <h4 class="font-display text-3xl uppercase text-ink">Senior Public Relations Head &bull;
                                 <span class="text-vermilion">LITSOC</span>
                             </h4>
-                            <span class="font-mono text-xs font-bold px-3 py-1 bg-surfaceMuted rounded-full">Aug 2026 â€“
+                            <span class="font-mono text-xs font-bold px-3 py-1 bg-surfaceMuted rounded-full">Aug 2026 &ndash;
                                 Present</span>
                         </div>
                         <p class="font-mono text-xs text-muted mb-4">Agra, Uttar Pradesh</p>
@@ -842,11 +820,11 @@
                             <p class="text-xs text-muted">TCS iON &bull; Jun 2026 (ID: 277212-31014904-1016)</p>
                         </div>
                         <div class="p-3 bg-surfaceMuted/50 rounded-xl">
-                            <p class="font-bold text-sm">Data Analytics and Job Simulation</p>
+                            <p class="font-bold text-sm">Data Analytics Job Simulation</p>
                             <p class="text-xs text-muted">Deloitte &bull; Jul 2026 (ID: FW7q7S47Zu3CbckcF)</p>
                         </div>
                         <div class="p-3 bg-surfaceMuted/50 rounded-xl">
-                            <p class="font-bold text-sm">Gen AI Powered Data Analytics</p>
+                            <p class="font-bold text-sm">Gen AI-Powered Data Analytics</p>
                             <p class="text-xs text-muted">Tata Group &bull; Jul 2026 (ID: 6a5ee66fcfc7cbacb761d94c)</p>
                         </div>
                         <div class="p-3 bg-surfaceMuted/50 rounded-xl">
@@ -868,18 +846,18 @@
                         <div class="p-3 bg-surfaceMuted/50 rounded-xl">
                             <p class="font-bold text-sm">B.Tech, Information Technology</p>
                             <p class="text-xs text-muted">Hindustan College of Science and Technology, Mathura &bull;
-                                2024â€“2028</p>
+                                2024&ndash;2028</p>
                             <p class="text-xs text-muted mt-1">Senior PR Head, LITSOC; National Youth Day Competition
                                 Winner</p>
                         </div>
                         <div class="p-3 bg-surfaceMuted/50 rounded-xl">
                             <p class="font-bold text-sm">Class XII, PCM &bull; 82.9%</p>
-                            <p class="text-xs text-muted">Holy Public School, Agra &bull; 2022â€“2024</p>
+                            <p class="text-xs text-muted">Holy Public School, Agra &bull; 2022&ndash;2024</p>
                             <p class="text-xs text-muted mt-1">House Captain and Club President</p>
                         </div>
                         <div class="p-3 bg-surfaceMuted/50 rounded-xl">
                             <p class="font-bold text-sm">Class X &bull; 81.3%</p>
-                            <p class="text-xs text-muted">Holy Public School, Agra &bull; 2020â€“2022</p>
+                            <p class="text-xs text-muted">Holy Public School, Agra &bull; 2020&ndash;2022</p>
                             <p class="text-xs text-muted mt-1">Class Representative and Skating Team Captain</p>
                         </div>
                     </div>
@@ -889,7 +867,7 @@
                             <i data-lucide="trophy" class="text-vermilion w-4 h-4"></i>
                             <span>ACHIEVEMENT</span>
                         </h3>
-                        <p class="mt-4 text-sm font-bold">Winner â€” National Youth Day Competition</p>
+                        <p class="mt-4 text-sm font-bold">Winner &mdash; National Youth Day Competition</p>
                     </div>
                 </div>
             </div>
@@ -907,6 +885,8 @@
                     LET'S CONNECT</h2>
             </div>
 
+            <div id="contact-scene-root" class="mb-10" aria-label="Interactive portfolio showcase"></div>
+
             <div
                 class="grid grid-cols-1 lg:grid-cols-12 rounded-3xl overflow-hidden border border-divider/40 shadow-xl bg-white">
                 <div
@@ -915,12 +895,12 @@
                         <h3 class="font-display text-5xl uppercase tracking-tight leading-none">HAVE A PROJECT IN MIND?
                         </h3>
                         <p class="mt-4 text-white/90 text-sm leading-relaxed">
-                            Open to technical internships, applied AI engineering roles, and collaborative development.
+                            I am open to technical internships, applied AI engineering roles, and collaborative projects.
                         </p>
                     </div>
                     <div class="my-8 w-36 h-36 rounded-full overflow-hidden border-4 border-white/40">
-                        <img src="/assets/vinarm-verma.png"
-                            alt="Vinarm Verma" class="w-full h-full object-cover grayscale" />
+                        <img src="assets/vinarm-verma.png"
+                            alt="Portrait of Vinarm Verma" class="w-full h-full object-cover" />
                     </div>
                     <div class="space-y-1 font-mono text-xs">
                         <p class="font-bold">Agra, Uttar Pradesh, India</p>
@@ -970,6 +950,8 @@
         </div>
     </footer>
 
+    <script src="assets/hero/hero.js"></script>
+
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
@@ -1006,6 +988,7 @@
                 group.forEach((target, index) => {
                     target.classList.add('reveal-item');
                     target.style.setProperty('--reveal-delay', `${Math.min(index * 100, 500)}ms`);
+                    target.style.setProperty('--reveal-rotate', index % 2 === 0 ? '-5deg' : '5deg');
                     revealObserver.observe(target);
                 });
             });
