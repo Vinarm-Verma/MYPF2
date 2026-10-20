@@ -69,7 +69,6 @@ export default function Hero({ compact = false }) {
   const horizonY = useTransform(horizon, [0, 1], ['24%', '0%']);
 
   const [phase, setPhase] = useState(sceneReady ? 'done' : 'loading'); // loading | deal | lift | done
-  const [progress, setProgress] = useState(0);
   const [textIn, setTextIn] = useState(sceneReady);
 
   const frameRef = useRef(null);
@@ -99,7 +98,6 @@ export default function Hero({ compact = false }) {
       lift.set(1);
       sky.set(1);
       horizon.set(1);
-      setProgress(1);
       setPhase('done');
       revealChrome();
     };
@@ -117,12 +115,8 @@ export default function Hero({ compact = false }) {
     }
 
     (async () => {
-      const total = CARDS.length + PREFETCH_IDX.length;
-      let loaded = 0;
-      const tick = () => !cancelled && setProgress(++loaded / total);
-
       // 1. every cover is decoded before the deal starts
-      await Promise.all(CARDS.map((c) => decodeCover(c.cover).then(tick)));
+      await Promise.all(CARDS.map((c) => decodeCover(c.cover)));
       if (cancelled) return;
 
       // 2. the deal (the loader) runs while the video previews load
@@ -130,7 +124,7 @@ export default function Hero({ compact = false }) {
       const dealDone = new Promise((res) => {
         dealAnim = animate(deal, 1, { duration: DEAL_SECONDS, ease: 'linear', onComplete: res });
       });
-      const assetsDone = Promise.all(PREFETCH_IDX.map((i) => prefetch(videoSrc(CARDS[i])).then(tick)));
+      const assetsDone = Promise.all(PREFETCH_IDX.map((i) => prefetch(videoSrc(CARDS[i]))));
       await Promise.all([dealDone, assetsDone]);
       if (cancelled) return;
 
@@ -502,16 +496,6 @@ export default function Hero({ compact = false }) {
         </div>
       )}
 
-      {/* loader counter + skip */}
-      {!compact && entering && (
-        <div className="hero-loader" aria-live="polite">
-          <span className="hero-count font-mono">{String(Math.round(progress * 100)).padStart(3, '0')}%</span>
-          <span className="hero-loadlabel font-mono">{phase === 'loading' ? 'LOADING COVERS' : phase === 'deal' ? 'DEALING' : 'OPENING'}</span>
-          <span className="hero-bar">
-            <span style={{ transform: `scaleX(${progress})` }} />
-          </span>
-        </div>
-      )}
       {!compact && entering && (
         <button type="button" className="hero-skip font-mono" onClick={() => skipRef.current()}>
           SKIP INTRO <span aria-hidden="true">→</span>

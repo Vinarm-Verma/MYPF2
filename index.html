@@ -56,6 +56,453 @@
     </script>
 
     <style>
+        .portfolio-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            isolation: isolate;
+            background:
+                radial-gradient(ellipse at 50% 46%, rgba(255, 255, 255, 0.78), transparent 48%),
+                linear-gradient(135deg, #c8d0d8, #b9c2cc);
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 450ms ease, visibility 450ms ease;
+        }
+
+        .portfolio-loader::before {
+            position: absolute;
+            inset: -30%;
+            z-index: -1;
+            background:
+                linear-gradient(rgba(17, 17, 17, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(17, 17, 17, 0.035) 1px, transparent 1px);
+            background-size: 48px 48px;
+            content: "";
+            transform: perspective(600px) rotateX(62deg) scale(1.5) translateY(24%);
+            transform-origin: center bottom;
+            mask-image: linear-gradient(transparent 8%, #000 58%, transparent 100%);
+        }
+
+        .portfolio-loader.is-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .portfolio-loader__content {
+            width: min(760px, calc(100vw - 36px));
+            perspective: 1400px;
+            perspective-origin: 50% 45%;
+        }
+
+        .portfolio-loader__panel {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(17, 17, 17, 0.16);
+            border-radius: 12px;
+            background: rgba(245, 247, 249, 0.9);
+            box-shadow:
+                0 2px 0 rgba(255, 255, 255, 0.8) inset,
+                0 3px 0 rgba(17, 17, 17, 0.08),
+                0 8px 0 rgba(17, 17, 17, 0.035),
+                0 34px 80px rgba(17, 17, 17, 0.2),
+                0 0 70px rgba(116, 59, 255, 0.12);
+            transform-style: preserve-3d;
+            animation: loader-panel-enter 1.05s cubic-bezier(0.16, 1, 0.3, 1) both,
+                loader-panel-float 3.8s ease-in-out 1.05s infinite;
+        }
+
+        .portfolio-loader__panel::after {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -55%;
+            width: 34%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.62), transparent);
+            content: "";
+            pointer-events: none;
+            transform: skewX(-18deg);
+            animation: loader-panel-sheen 1.1s ease-out 0.5s both;
+        }
+
+        .portfolio-loader__topbar {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 42px;
+            padding: 0 20px;
+            border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+            color: #50545a;
+            font: 700 9px/1 "Space Grotesk", sans-serif;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .portfolio-loader__window-controls {
+            display: flex;
+            gap: 5px;
+        }
+
+        .portfolio-loader__window-controls i {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ff765f;
+        }
+
+        .portfolio-loader__window-controls i:nth-child(2) {
+            background: #743bff;
+        }
+
+        .portfolio-loader__window-controls i:nth-child(3) {
+            background: #111;
+            opacity: 0.32;
+        }
+
+        .portfolio-loader__body {
+            position: relative;
+            display: grid;
+            justify-items: center;
+            padding: clamp(32px, 7vw, 68px) 20px clamp(28px, 5vw, 48px);
+            text-align: center;
+            transform-style: preserve-3d;
+        }
+
+        .portfolio-loader__watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: -1;
+            color: #743bff;
+            font: 400 clamp(150px, 32vw, 270px)/0.8 "Bebas Neue", sans-serif;
+            letter-spacing: -0.04em;
+            opacity: 0.075;
+            pointer-events: none;
+            transform: translate(-50%, -56%) translateZ(-28px);
+            white-space: nowrap;
+        }
+
+        .portfolio-loader__eyebrow {
+            margin: 0 0 18px;
+            color: #743bff;
+            font: 700 10px/1.4 "Space Grotesk", sans-serif;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            animation: loader-copy-enter 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;
+        }
+
+        .portfolio-loader__name {
+            display: grid;
+            margin: 0;
+            color: #111;
+            font: 400 clamp(66px, 14vw, 126px)/0.76 "Bebas Neue", sans-serif;
+            letter-spacing: 0.015em;
+            text-shadow:
+                0 1px 0 #c6cbd0,
+                0 2px 0 #b8bec5,
+                0 3px 0 #aab1b8,
+                0 4px 0 #9da4ad,
+                0 5px 0 #8d959f,
+                0 11px 22px rgba(17, 17, 17, 0.2);
+            transform-style: preserve-3d;
+        }
+
+        .portfolio-loader__name span {
+            display: block;
+            opacity: 0;
+            transform: rotateX(-85deg) translateY(24px) translateZ(-44px);
+            transform-origin: center bottom;
+            animation: loader-name-reveal 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .portfolio-loader__name span:nth-child(2) {
+            animation-delay: 0.16s;
+        }
+
+        .portfolio-loader__subtitle {
+            margin: 22px 0 0;
+            color: #50545a;
+            font: 600 clamp(10px, 2vw, 13px)/1.5 "Space Grotesk", sans-serif;
+            letter-spacing: 0.1em;
+            animation: loader-copy-enter 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) 0.72s both;
+        }
+
+        .portfolio-loader__footer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 34px;
+            color: #50545a;
+            font: 700 8px/1 "Space Grotesk", sans-serif;
+            letter-spacing: 0.18em;
+            animation: loader-copy-enter 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) 0.9s both;
+        }
+
+        .portfolio-loader__footer::before,
+        .portfolio-loader__footer::after {
+            width: clamp(18px, 7vw, 54px);
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(17, 17, 17, 0.36));
+            content: "";
+        }
+
+        .portfolio-loader__footer::after {
+            transform: rotate(180deg);
+        }
+
+        .portfolio-loader__initials {
+            position: absolute;
+            right: 18px;
+            bottom: 16px;
+            display: grid;
+            width: 30px;
+            aspect-ratio: 1;
+            place-items: center;
+            border: 1px solid rgba(116, 59, 255, 0.45);
+            border-radius: 50%;
+            color: #743bff;
+            font: 400 14px/1 "Bebas Neue", sans-serif;
+            transform: translateZ(22px);
+            animation: loader-seal-appear 0.7s ease-out 1s both;
+        }
+
+        .portfolio-loader__caption {
+            color: #50545a;
+            font: 700 9px/1.4 "Space Grotesk", sans-serif;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+        }
+
+        .portfolio-loader__loading {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            width: min(180px, 45vw);
+            margin: 24px auto 0;
+        }
+
+        .portfolio-loader__count {
+            color: #111;
+            font: 700 10px/1 "Space Grotesk", sans-serif;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: 0.08em;
+        }
+
+        .portfolio-loader__track {
+            width: min(180px, 45vw);
+            height: 2px;
+            margin: 9px auto 0;
+            overflow: hidden;
+            background: rgba(17, 17, 17, 0.12);
+        }
+
+        .portfolio-loader__track::after {
+            display: block;
+            width: var(--loader-progress, 0%);
+            height: 100%;
+            background: linear-gradient(90deg, #ff321f, #743bff);
+            content: "";
+            transition: width 80ms linear;
+        }
+
+        @media (max-width: 480px) {
+            .portfolio-loader__topbar {
+                min-height: 36px;
+                padding-inline: 14px;
+                font-size: 8px;
+            }
+
+            .portfolio-loader__eyebrow {
+                margin-bottom: 16px;
+                letter-spacing: 0.22em;
+            }
+
+            .portfolio-loader__subtitle {
+                max-width: 260px;
+                letter-spacing: 0.04em;
+            }
+
+            .portfolio-loader__footer {
+                margin-top: 28px;
+                font-size: 7px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .portfolio-loader::before {
+                display: none;
+            }
+
+            .portfolio-loader__panel,
+            .portfolio-loader__panel::after,
+            .portfolio-loader__eyebrow,
+            .portfolio-loader__name span,
+            .portfolio-loader__subtitle,
+            .portfolio-loader__footer,
+            .portfolio-loader__initials,
+            .portfolio-loader__track::after {
+                animation: none !important;
+                opacity: 1;
+                transform: none;
+            }
+
+            .portfolio-loader__track::after {
+                width: 100%;
+                transition: none;
+            }
+        }
+
+        .hero-loader {
+            display: none !important;
+        }
+
+        @media (max-width: 640px) {
+            header .portfolio-header__inner {
+                gap: 6px;
+                padding-inline: 8px !important;
+            }
+
+            header .portfolio-header__brand {
+                flex: 0 0 auto;
+                gap: 5px;
+            }
+
+            header .portfolio-header__brand-mark {
+                width: 30px;
+                height: 30px;
+                font-size: 20px;
+            }
+
+            header .portfolio-header__brand-name {
+                font-size: 9px;
+                letter-spacing: 0.08em;
+            }
+
+            header .portfolio-header__brand-subtitle {
+                font-size: 8px;
+            }
+
+            header .portfolio-header__social {
+                flex: 0 0 auto;
+                gap: 4px;
+            }
+
+            header .portfolio-header__social > a:not(.portfolio-header__cta) {
+                width: 26px;
+                height: 26px;
+            }
+
+            header .portfolio-header__social > a:not(.portfolio-header__cta) {
+                flex: 0 0 26px;
+            }
+
+            header .portfolio-header__social a:nth-child(3) {
+                display: none;
+            }
+
+            header .portfolio-header__social > a:not(.portfolio-header__cta) svg {
+                width: 13px;
+                height: 13px;
+            }
+
+            header .portfolio-header__cta {
+                display: inline-flex;
+                flex: 0 0 auto;
+                gap: 3px;
+                padding: 6px 8px;
+                font-size: 8px;
+                letter-spacing: 0.08em;
+                white-space: nowrap;
+            }
+
+            header .portfolio-header__cta svg {
+                width: 12px;
+                height: 12px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            header .portfolio-header__social > a:nth-child(5) {
+                display: none;
+            }
+        }
+
+        @keyframes loader-panel-enter {
+            from {
+                opacity: 0;
+                transform: rotateX(22deg) rotateY(-18deg) translateY(46px) translateZ(-120px) scale(0.88);
+            }
+
+            to {
+                opacity: 1;
+                transform: rotateX(4deg) rotateY(-5deg) translateY(0) translateZ(0) scale(1);
+            }
+        }
+
+        @keyframes loader-panel-float {
+            0%, 100% {
+                transform: rotateX(4deg) rotateY(-5deg) translateY(0) translateZ(0) scale(1);
+            }
+
+            50% {
+                transform: rotateX(1deg) rotateY(3deg) translateY(-7px) translateZ(8px) scale(1.005);
+            }
+        }
+
+        @keyframes loader-panel-sheen {
+            to {
+                left: 125%;
+            }
+        }
+
+        @keyframes loader-copy-enter {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes loader-name-reveal {
+            0% {
+                opacity: 0;
+                filter: blur(8px);
+                transform: rotateX(-85deg) translateY(24px) translateZ(-44px);
+            }
+
+            70% {
+                opacity: 1;
+                filter: blur(0);
+                transform: rotateX(8deg) translateY(-3px) translateZ(12px);
+            }
+
+            100% {
+                opacity: 1;
+                filter: blur(0);
+                transform: rotateX(0) translateY(0) translateZ(0);
+            }
+        }
+
+        @keyframes loader-seal-appear {
+            from {
+                opacity: 0;
+                transform: rotate(-80deg) scale(0.4) translateZ(22px);
+            }
+
+            to {
+                opacity: 1;
+                transform: rotate(0) scale(1) translateZ(22px);
+            }
+        }
+
         @keyframes edge-glow {
 
             0%,
@@ -71,14 +518,16 @@
         body::before {
             content: "";
             position: fixed;
-            inset: 6px;
+            inset: 0;
             z-index: 60;
             pointer-events: none;
-            background:
-                linear-gradient(90deg, rgba(255, 50, 31, 0.25), rgba(255, 50, 31, 0.95), rgba(116, 59, 255, 0.95), rgba(116, 59, 255, 0.25)) top / 100% 2px no-repeat,
-                linear-gradient(90deg, rgba(116, 59, 255, 0.25), rgba(116, 59, 255, 0.95), rgba(255, 118, 95, 0.95), rgba(255, 118, 95, 0.25)) bottom / 100% 2px no-repeat,
-                linear-gradient(180deg, rgba(255, 50, 31, 0.25), rgba(255, 50, 31, 0.9), rgba(116, 59, 255, 0.9), rgba(116, 59, 255, 0.25)) left / 2px 100% no-repeat,
-                linear-gradient(180deg, rgba(116, 59, 255, 0.25), rgba(116, 59, 255, 0.9), rgba(255, 118, 95, 0.9), rgba(255, 118, 95, 0.25)) right / 2px 100% no-repeat;
+            padding: 2px;
+            border-radius: 0;
+            background: linear-gradient(135deg, rgba(255, 50, 31, 0.95), rgba(116, 59, 255, 0.95), rgba(255, 118, 95, 0.95));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
             filter: drop-shadow(0 0 8px rgba(255, 50, 31, 0.7)) drop-shadow(0 0 18px rgba(116, 59, 255, 0.55));
             animation: edge-glow 5s ease-in-out infinite;
         }
@@ -1721,130 +2170,89 @@
             text-align: center;
         }
 
-        @media (max-width: 640px) {
+        @keyframes tech-mobile-orbit {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 767px) {
             .tech-orbit {
-                width: 100%;
-                margin-inline: 0;
-                aspect-ratio: auto;
+                width: calc(100vw - 16px);
+                margin-left: -20px;
+                aspect-ratio: 1;
                 perspective: none;
+                overflow: visible;
             }
 
             .tech-orbit__stage {
-                position: relative;
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-                animation: none;
+                position: absolute;
+                inset: 0;
+                animation: tech-mobile-orbit 38s linear infinite;
             }
 
             .tech-orbit__cell {
-                position: relative;
-                inset: auto;
-                container-type: normal;
+                position: absolute;
+                inset: 0;
+                container-type: inline-size;
             }
 
             .tech-orbit__ring {
-                position: relative;
-                top: auto;
-                left: auto;
-                display: flex;
-                width: 100%;
-                height: auto;
-                aspect-ratio: auto;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-                padding: 14px 0 8px;
-                border: 0;
-                border-top: 1px solid color-mix(in srgb, var(--orbit-accent) 38%, transparent);
-                border-radius: 0;
-                box-shadow: none;
-                transform: none;
+                --ring-size: 88cqi;
+                --orbit-radius: 44cqi;
+                --ring-depth: 0px;
+                --ring-tilt: 0deg;
+                transform-style: flat;
+                transform: translate(-50%, -50%);
                 animation: none;
             }
 
-            .tech-orbit__ring--languages::before,
-            .tech-orbit__ring--tools::before,
-            .tech-orbit__ring--frameworks::before,
-            .tech-orbit__ring--databases::before {
-                display: block;
-                width: 100%;
-                color: var(--orbit-accent);
-                font: 700 9px/1.2 "Space Grotesk", sans-serif;
-                letter-spacing: 0.16em;
-                text-align: left;
+            .tech-orbit__ring--tools {
+                --ring-size: 65cqi;
+                --orbit-radius: 32.5cqi;
+                --ring-offset: 0deg;
+                --ring-tilt: 0deg;
             }
 
-            .tech-orbit__ring--languages::before {
-                content: "01 / LANGUAGES";
+            .tech-orbit__ring--frameworks {
+                --ring-size: 42cqi;
+                --orbit-radius: 21cqi;
+                --ring-offset: 67.5deg;
+                --ring-tilt: 0deg;
             }
 
-            .tech-orbit__ring--tools::before {
-                content: "02 / DATA & TOOLS";
-            }
-
-            .tech-orbit__ring--frameworks::before {
-                content: "03 / FRAMEWORKS";
-            }
-
-            .tech-orbit__ring--databases::before {
-                content: "04 / DATABASES";
-            }
-
-            .tech-orbit__ring::after {
-                display: none;
+            .tech-orbit__ring--databases {
+                --ring-size: 21cqi;
+                --orbit-radius: 10.5cqi;
+                --ring-offset: 0deg;
+                --ring-tilt: 0deg;
             }
 
             .tech-orbit__node {
-                position: relative;
-                top: auto;
-                left: auto;
-                width: auto;
-                min-width: 0;
-                min-height: 38px;
-                flex: 0 0 auto;
-                padding: 0;
-                font-size: 11px;
-                transform: none;
+                width: max-content;
+                min-width: 40px;
+                max-width: 58px;
+                min-height: 28px;
+                font-size: clamp(7px, 2.5cqi, 9px);
+                transform: translate(-50%, -50%) rotate(calc(var(--angle) + var(--ring-offset, 0deg))) translateY(calc(0cqi - var(--orbit-radius))) rotate(calc(0deg - var(--angle) - var(--ring-offset, 0deg)));
             }
 
             .tech-orbit__label {
-                width: auto;
-                min-height: 38px;
-                padding: 8px 12px;
+                width: 100%;
+                min-height: 24px;
+                padding: 3px 4px;
                 border-radius: 999px;
+                white-space: nowrap;
                 animation: none;
             }
 
+            .tech-orbit__node[data-tech="database-management"] .tech-orbit__label {
+                white-space: normal;
+            }
+
             .tech-orbit__hub {
-                position: relative;
-                inset: auto;
-                display: flex;
-                width: 100%;
-                min-height: 58px;
-                aspect-ratio: auto;
-                order: -1;
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 6px 10px;
-                padding: 10px 12px;
-                border-radius: 18px;
-                transform: none;
+                display: none;
             }
-
-            .tech-orbit__hub-name {
-                font-size: 12px;
-            }
-
-            .tech-orbit__hub-label {
-                font-size: 9px;
-            }
-
-            .tech-orbit__hub-count {
-                font-size: 7px;
-            }
-
         }
 
         @keyframes contact-glow {
@@ -2261,18 +2669,47 @@
 <body
     class="bg-[#C8D0D8] text-[#111111] font-sans antialiased selection:bg-[#FF321F] selection:text-white overflow-x-hidden">
 
+    <div class="portfolio-loader" id="portfolio-loader" role="status" aria-live="polite"
+        aria-label="Welcome to Vinarm Verma's portfolio">
+        <div class="portfolio-loader__content">
+            <div class="portfolio-loader__panel">
+                <div class="portfolio-loader__topbar">
+                    <span>Vinarm Verma / Portfolio</span>
+                    <span class="portfolio-loader__window-controls" aria-hidden="true"><i></i><i></i><i></i></span>
+                </div>
+                <div class="portfolio-loader__body">
+                    <span class="portfolio-loader__watermark" aria-hidden="true">01</span>
+                    <p class="portfolio-loader__eyebrow">Welcome to my portfolio</p>
+                    <div class="portfolio-loader__name" aria-hidden="true">
+                        <span>VINARM</span>
+                        <span>VERMA</span>
+                    </div>
+                    <p class="portfolio-loader__subtitle">SOFTWARE ENGINEER &amp; AI ENTHUSIAST</p>
+                    <div class="portfolio-loader__footer">B.TECH IT &bull; HCST &bull; CLASS OF 2028</div>
+                    <span class="portfolio-loader__initials" aria-hidden="true">VV</span>
+                </div>
+            </div>
+            <div class="portfolio-loader__loading" aria-hidden="true">
+                <span class="portfolio-loader__caption">Loading portfolio</span>
+                <span class="portfolio-loader__count"><span class="portfolio-loader__count-value">01</span> / 100</span>
+            </div>
+            <div class="portfolio-loader__track" role="progressbar" aria-label="Portfolio loading progress"
+                aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+        </div>
+    </div>
+
     <!-- NAVIGATION -->
     <header
         class="fixed top-0 left-0 w-full z-50 bg-[#C8D0D8]/90 backdrop-blur-md border-b border-[#8B929A]/30 py-4 transition-all">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
-            <a href="#hero" class="flex items-center gap-3 group">
+        <div class="portfolio-header__inner max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
+            <a href="#hero" class="portfolio-header__brand flex items-center gap-3 group">
                 <div
-                    class="w-10 h-10 rounded-full bg-ink text-canvas flex items-center justify-center font-display text-2xl tracking-tight transition-transform group-hover:scale-105 group-hover:bg-vermilion">
+                    class="portfolio-header__brand-mark w-10 h-10 rounded-full bg-ink text-canvas flex items-center justify-center font-display text-2xl tracking-tight transition-transform group-hover:scale-105 group-hover:bg-vermilion">
                     VV
                 </div>
                 <div>
-                    <span class="font-mono text-xs font-bold tracking-widest block text-ink">VINARM VERMA</span>
-                    <span class="text-[10px] tracking-wider text-muted font-medium block">B.TECH IT / HCST</span>
+                    <span class="portfolio-header__brand-name font-mono text-xs font-bold tracking-widest block text-ink">VINARM VERMA</span>
+                    <span class="portfolio-header__brand-subtitle text-[10px] tracking-wider text-muted font-medium block">B.TECH IT / HCST</span>
                 </div>
             </a>
 
@@ -2285,7 +2722,7 @@
                 <a href="#contact" class="hover:text-vermilion transition-colors">CONTACT</a>
             </nav>
 
-            <div class="flex items-center gap-3">
+            <div class="portfolio-header__social flex items-center gap-3">
                 <a href="https://linkedin.com/in/vinarm-verma-25403433a" target="_blank" rel="noopener noreferrer"
                     aria-label="Vinarm Verma on LinkedIn"
                     class="w-9 h-9 rounded-full border border-ink/20 flex items-center justify-center text-ink hover:bg-ink hover:text-canvas transition-colors">
@@ -2317,7 +2754,7 @@
                     <i data-lucide="mail" class="w-4 h-4"></i>
                 </a>
                 <a href="#contact"
-                    class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-ink text-white font-mono text-xs font-bold tracking-widest hover:bg-vermilion transition-all">
+                    class="portfolio-header__cta inline-flex items-center gap-2 px-5 py-2 rounded-full bg-ink text-white font-mono text-xs font-bold tracking-widest hover:bg-vermilion transition-all">
                     LET'S TALK <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
                 </a>
             </div>
@@ -3048,6 +3485,72 @@
                         </h3>
 
                         <div class="journey-cert-list">
+                            <a class="journey-card journey-cert-card"
+                                href="https://www.skills.google/public_profiles/63ec0b95-e739-43e4-9283-826259c2fa2c/badges/28962754?utm_medium=social&amp;utm_source=linkedin&amp;utm_campaign=ql-social-share"
+                                target="_blank" rel="noopener noreferrer"
+                                aria-label="View Machine Learning Operations for Generative AI badge on Google Cloud Skills Boost">
+                                <div class="journey-cert-card__content">
+                                    <p class="font-bold text-sm">Machine Learning Operations (MLOps) for Generative AI</p>
+                                    <p class="text-xs text-muted">Google Cloud Skills Boost &bull; Completion badge</p>
+                                </div>
+                                <i data-lucide="external-link" class="journey-cert-card__link-icon w-4 h-4"
+                                    aria-hidden="true"></i>
+                            </a>
+                            <a class="journey-card journey-cert-card"
+                                href="https://www.skills.google/public_profiles/63ec0b95-e739-43e4-9283-826259c2fa2c/badges/28963007?utm_medium=social&amp;utm_source=linkedin&amp;utm_campaign=ql-social-share"
+                                target="_blank" rel="noopener noreferrer"
+                                aria-label="View Machine Learning Operations with Agent Platform: Model Evaluation badge on Google Cloud Skills Boost">
+                                <div class="journey-cert-card__content">
+                                    <p class="font-bold text-sm">Machine Learning Operations (MLOps) with Agent Platform: Model Evaluation</p>
+                                    <p class="text-xs text-muted">Google Cloud Skills Boost &bull; Completion badge</p>
+                                </div>
+                                <i data-lucide="external-link" class="journey-cert-card__link-icon w-4 h-4"
+                                    aria-hidden="true"></i>
+                            </a>
+                            <a class="journey-card journey-cert-card"
+                                href="https://www.skills.google/public_profiles/63ec0b95-e739-43e4-9283-826259c2fa2c/badges/28992773?utm_medium=social&amp;utm_source=linkedin&amp;utm_campaign=ql-social-share"
+                                target="_blank" rel="noopener noreferrer"
+                                aria-label="View Configure Gemini Code Assist for Organizations badge on Google Cloud Skills Boost">
+                                <div class="journey-cert-card__content">
+                                    <p class="font-bold text-sm">Configure Gemini Code Assist for Organizations</p>
+                                    <p class="text-xs text-muted">Google Cloud Skills Boost &bull; Completion badge</p>
+                                </div>
+                                <i data-lucide="external-link" class="journey-cert-card__link-icon w-4 h-4"
+                                    aria-hidden="true"></i>
+                            </a>
+                            <a class="journey-card journey-cert-card"
+                                href="https://www.skills.google/public_profiles/63ec0b95-e739-43e4-9283-826259c2fa2c/badges/28992970?utm_medium=social&amp;utm_source=linkedin&amp;utm_campaign=ql-social-share"
+                                target="_blank" rel="noopener noreferrer"
+                                aria-label="View Deploy and Scale AI Models with Cloud Run badge on Google Cloud Skills Boost">
+                                <div class="journey-cert-card__content">
+                                    <p class="font-bold text-sm">Deploy and Scale AI Models with Cloud Run</p>
+                                    <p class="text-xs text-muted">Google Cloud Skills Boost &bull; Completion badge</p>
+                                </div>
+                                <i data-lucide="external-link" class="journey-cert-card__link-icon w-4 h-4"
+                                    aria-hidden="true"></i>
+                            </a>
+                            <a class="journey-card journey-cert-card"
+                                href="https://www.skills.google/public_profiles/63ec0b95-e739-43e4-9283-826259c2fa2c/badges/28965321?utm_medium=social&amp;utm_source=linkedin&amp;utm_campaign=ql-social-share"
+                                target="_blank" rel="noopener noreferrer"
+                                aria-label="View Introduction to Security in the World of AI badge on Google Cloud Skills Boost">
+                                <div class="journey-cert-card__content">
+                                    <p class="font-bold text-sm">Introduction to Security in the World of AI</p>
+                                    <p class="text-xs text-muted">Google Cloud Skills Boost &bull; Completion badge</p>
+                                </div>
+                                <i data-lucide="external-link" class="journey-cert-card__link-icon w-4 h-4"
+                                    aria-hidden="true"></i>
+                            </a>
+                            <a class="journey-card journey-cert-card"
+                                href="https://www.skills.google/public_profiles/63ec0b95-e739-43e4-9283-826259c2fa2c/badges/28990640?utm_medium=social&amp;utm_source=linkedin&amp;utm_campaign=ql-social-share"
+                                target="_blank" rel="noopener noreferrer"
+                                aria-label="View Gemini for Application Developers badge on Google Cloud Skills Boost">
+                                <div class="journey-cert-card__content">
+                                    <p class="font-bold text-sm">Gemini for Application Developers</p>
+                                    <p class="text-xs text-muted">Google Cloud Skills Boost &bull; Completion badge</p>
+                                </div>
+                                <i data-lucide="external-link" class="journey-cert-card__link-icon w-4 h-4"
+                                    aria-hidden="true"></i>
+                            </a>
                             <div class="journey-card journey-cert-card journey-cert-card--aws">
                                 <div class="journey-cert-card__content">
                                     <p class="font-bold text-sm">AWS Cloud Essentials</p>
@@ -3680,6 +4183,40 @@
             document.getElementById('form-feedback').classList.remove('hidden');
             e.target.reset();
         }
+    </script>
+    <script>
+        const portfolioLoader = document.getElementById('portfolio-loader');
+        const loaderDuration = 3200;
+        const portfolioLoaderReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const loaderDelay = portfolioLoaderReducedMotion ? 100 : loaderDuration;
+        const loaderWatermark = portfolioLoader.querySelector('.portfolio-loader__watermark');
+        const loaderCount = portfolioLoader.querySelector('.portfolio-loader__count-value');
+        const loaderTrack = portfolioLoader.querySelector('.portfolio-loader__track');
+
+        if (portfolioLoaderReducedMotion) {
+            loaderWatermark.textContent = '100';
+            loaderCount.textContent = '100';
+            loaderTrack.setAttribute('aria-valuenow', '100');
+            loaderTrack.style.setProperty('--loader-progress', '100%');
+        } else {
+            const loaderStartedAt = performance.now();
+            const updateLoaderProgress = (now) => {
+                const progress = Math.min((now - loaderStartedAt) / loaderDuration, 1);
+                const value = Math.max(1, Math.ceil(progress * 100));
+                const displayValue = String(value).padStart(2, '0');
+                loaderWatermark.textContent = displayValue;
+                loaderCount.textContent = displayValue;
+                loaderTrack.setAttribute('aria-valuenow', String(value));
+                loaderTrack.style.setProperty('--loader-progress', `${value}%`);
+                if (progress < 1) window.requestAnimationFrame(updateLoaderProgress);
+            };
+            window.requestAnimationFrame(updateLoaderProgress);
+        }
+
+        window.setTimeout(() => {
+            portfolioLoader.classList.add('is-hidden');
+            window.setTimeout(() => portfolioLoader.remove(), 500);
+        }, loaderDelay);
     </script>
 </body>
 
