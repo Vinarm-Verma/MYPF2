@@ -46,18 +46,20 @@
 
     <link rel="stylesheet" href="assets/hero/hero.css">
     <script>
-        (function () {
-            var d = document.documentElement;
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                d.classList.add('hero-pending');
-                setTimeout(function () { d.classList.remove('hero-pending'); }, 16000);
-            }
-        })();
+            (function () {
+                var d = document.documentElement;
+                if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    d.classList.add('hero-pending');
+                    setTimeout(function () { d.classList.remove('hero-pending'); }, 16000);
+                }
+            })();
     </script>
 
     <style>
         @keyframes edge-glow {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: 0.7;
             }
 
@@ -107,7 +109,9 @@
         }
 
         @keyframes orbit-float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0) rotate(-6deg);
             }
 
@@ -230,10 +234,7 @@
             box-shadow: 0 0 0 2px hsl(calc(var(--certificate-index) * 20deg) 88% 62% / 0.18), 0 10px 28px rgba(17, 17, 17, 0.22);
             object-fit: contain;
             opacity: 0.9;
-            transform: translate(-50%, -50%)
-                rotateY(calc(var(--certificate-index) * 20deg))
-                translateZ(clamp(170px, 21vw, 280px))
-                rotateY(calc(var(--certificate-index) * -20deg));
+            transform: translate(-50%, -50%) rotateY(calc(var(--certificate-index) * 20deg)) translateZ(clamp(170px, 21vw, 280px)) rotateY(calc(var(--certificate-index) * -20deg));
             transform-style: preserve-3d;
         }
 
@@ -394,10 +395,7 @@
             object-fit: contain;
             backface-visibility: hidden;
             cursor: zoom-in;
-            transform: translate(-50%, -50%)
-                rotateY(calc(var(--certificate-index) * 20deg))
-                translateZ(clamp(140px, 26vw, 380px))
-                rotateY(calc(var(--certificate-index) * -20deg));
+            transform: translate(-50%, -50%) rotateY(calc(var(--certificate-index) * 20deg)) translateZ(clamp(140px, 26vw, 380px)) rotateY(calc(var(--certificate-index) * -20deg));
         }
 
         .journey-certificate-dialog__card:focus-visible {
@@ -771,8 +769,8 @@
             color: #fff;
         }
 
-        .journey-cert-card p + p,
-        .journey-school p + p {
+        .journey-cert-card p+p,
+        .journey-school p+p {
             margin-top: 3px;
             color: rgba(255, 255, 255, 0.58);
             overflow-wrap: anywhere;
@@ -948,7 +946,7 @@
             font-weight: 600;
         }
 
-        .expertise-card__details-inner p + p {
+        .expertise-card__details-inner p+p {
             color: rgba(255, 255, 255, 0.68);
             font-size: 13px;
             line-height: 1.7;
@@ -1083,10 +1081,7 @@
 
             .journey-certificate-orbit__card {
                 width: clamp(90px, 8vw, 116px);
-                transform: translate(-50%, -50%)
-                    rotateY(calc(var(--certificate-index) * 20deg))
-                    translateZ(clamp(160px, 15vw, 220px))
-                    rotateY(calc(var(--certificate-index) * -20deg));
+                transform: translate(-50%, -50%) rotateY(calc(var(--certificate-index) * 20deg)) translateZ(clamp(160px, 15vw, 220px)) rotateY(calc(var(--certificate-index) * -20deg));
             }
 
             .journey-certificate-orbit__detail {
@@ -1206,10 +1201,7 @@
 
             .journey-certificate-orbit__card {
                 width: clamp(68px, 18vw, 82px);
-                transform: translate(-50%, -50%)
-                    rotateY(calc(var(--certificate-index) * 20deg))
-                    translateZ(clamp(122px, 33vw, 138px))
-                    rotateY(calc(var(--certificate-index) * -20deg));
+                transform: translate(-50%, -50%) rotateY(calc(var(--certificate-index) * 20deg)) translateZ(clamp(122px, 33vw, 138px)) rotateY(calc(var(--certificate-index) * -20deg));
             }
 
             .journey-certificate-orbit__detail {
@@ -1229,10 +1221,7 @@
 
             .journey-certificate-dialog__card {
                 width: clamp(100px, 28vw, 160px);
-                transform: translate(-50%, -50%)
-                    rotateY(calc(var(--certificate-index) * 20deg))
-                    translateZ(clamp(100px, 30vw, 130px))
-                    rotateY(calc(var(--certificate-index) * -20deg));
+                transform: translate(-50%, -50%) rotateY(calc(var(--certificate-index) * 20deg)) translateZ(clamp(100px, 30vw, 130px)) rotateY(calc(var(--certificate-index) * -20deg));
             }
 
             .journey-certificate-dialog__hint {
@@ -1247,10 +1236,7 @@
             .journey-certificate-orbit__card {
                 width: clamp(64px, 18vw, 76px);
                 opacity: 0.94;
-                transform: translate(-50%, -50%)
-                    rotateY(calc(var(--certificate-index) * 20deg))
-                    translateZ(clamp(116px, 32vw, 132px))
-                    rotateY(calc(var(--certificate-index) * -20deg));
+                transform: translate(-50%, -50%) rotateY(calc(var(--certificate-index) * 20deg)) translateZ(clamp(116px, 32vw, 132px)) rotateY(calc(var(--certificate-index) * -20deg));
             }
 
             .journey-entry {
@@ -1278,7 +1264,9 @@
         }
 
         @keyframes journey-pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 box-shadow: 0 0 0 5px rgba(255, 50, 31, 0.1), 0 0 14px rgba(255, 50, 31, 0.45);
             }
 
@@ -1363,7 +1351,9 @@
         }
 
         @keyframes tech-orbit-float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0) rotateX(-4deg) rotateY(-7deg);
             }
 
@@ -1858,7 +1848,9 @@
         }
 
         @keyframes contact-glow {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: 0.35;
                 transform: scale(0.92);
             }
@@ -1876,7 +1868,9 @@
         }
 
         @keyframes contact-portrait-float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0) rotateY(-5deg);
             }
 
@@ -2009,6 +2003,50 @@
             border-color: #743bff;
             background-color: white;
             box-shadow: 0 0 0 4px rgba(116, 59, 255, 0.1), 0 12px 24px rgba(17, 17, 17, 0.07);
+        }
+
+        @media (max-width: 1023px) {
+            .skills-showcase {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .skills-showcase__visual {
+                min-width: 0;
+            }
+
+            .journey-lower-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .journey-certifications,
+            .journey-side-stack {
+                grid-column: 1 / -1;
+                min-width: 0;
+            }
+
+            .journey-certifications {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .journey-cert-list {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .journey-cert-card,
+            .journey-cert-card__content,
+            .journey-cert-card__content p {
+                min-width: 0;
+                text-align: left;
+            }
+
+            .journey-cert-card {
+                justify-content: flex-start;
+            }
+
+            .journey-cert-card__content {
+                flex: 1 1 auto;
+                overflow-wrap: anywhere;
+            }
         }
 
         .contact-field:focus-visible,
@@ -2207,6 +2245,16 @@
                 box-shadow: 0 18px 45px rgba(17, 17, 17, 0.12);
             }
         }
+
+        @media (max-width: 1023px) {
+            .motion-ready .reveal-item.journey-card {
+                transform: translateY(24px);
+            }
+
+            .motion-ready .reveal-item.journey-card.is-visible {
+                transform: none;
+            }
+        }
     </style>
 </head>
 
@@ -2242,14 +2290,16 @@
                     aria-label="Vinarm Verma on LinkedIn"
                     class="w-9 h-9 rounded-full border border-ink/20 flex items-center justify-center text-ink hover:bg-ink hover:text-canvas transition-colors">
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.35V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        <path
+                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.35V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                     </svg>
                 </a>
                 <a href="https://github.com/Vinarm-Verma" target="_blank" rel="noopener noreferrer"
                     aria-label="Vinarm Verma on GitHub"
                     class="w-9 h-9 rounded-full border border-ink/20 flex items-center justify-center text-ink hover:bg-ink hover:text-canvas transition-colors">
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M12 .297a12 12 0 0 0-3.79 23.4c.6.111.82-.261.82-.577v-2.234c-3.338.726-4.043-1.416-4.043-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.605-2.665-.304-5.466-1.333-5.466-5.931 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 6.004 0c2.29-1.552 3.296-1.23 3.296-1.23.655 1.652.243 2.873.12 3.176.77.84 1.235 1.911 1.235 3.221 0 4.606-3.337 5.623-6.514 5.92-.42.36-.798 1.096-.798 2.21v3.283c0 .319.216.694.825.576A12.001 12.001 0 0 0 12 .297z" />
+                        <path
+                            d="M12 .297a12 12 0 0 0-3.79 23.4c.6.111.82-.261.82-.577v-2.234c-3.338.726-4.043-1.416-4.043-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.605-2.665-.304-5.466-1.333-5.466-5.931 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 6.004 0c2.29-1.552 3.296-1.23 3.296-1.23.655 1.652.243 2.873.12 3.176.77.84 1.235 1.911 1.235 3.221 0 4.606-3.337 5.623-6.514 5.92-.42.36-.798 1.096-.798 2.21v3.283c0 .319.216.694.825.576A12.001 12.001 0 0 0 12 .297z" />
                     </svg>
                 </a>
                 <a href="https://www.hackerrank.com/profile/vinarmverma95" target="_blank" rel="noopener noreferrer"
@@ -2279,7 +2329,8 @@
         <div id="hero-root"></div>
         <noscript>
             <div class="max-w-7xl mx-auto px-6 sm:px-8 pt-16 pb-16">
-                <h2 class="font-display text-6xl sm:text-7xl tracking-tight leading-[0.92] text-ink uppercase">BUILDING <span class="text-vermilion">INTELLIGENT</span> SYSTEMS &amp; PRACTICAL SOFTWARE.</h2>
+                <h2 class="font-display text-6xl sm:text-7xl tracking-tight leading-[0.92] text-ink uppercase">BUILDING
+                    <span class="text-vermilion">INTELLIGENT</span> SYSTEMS &amp; PRACTICAL SOFTWARE.</h2>
             </div>
         </noscript>
     </section>
@@ -2303,22 +2354,27 @@
             <div class="expertise-grid">
                 <!-- 01 -->
                 <article class="expertise-card is-open">
-                    <button onclick="toggleAccordion('acc1')"
-                        class="expertise-card__button w-full text-left group" aria-expanded="true" aria-controls="acc1">
+                    <button onclick="toggleAccordion('acc1')" class="expertise-card__button w-full text-left group"
+                        aria-expanded="true" aria-controls="acc1">
                         <div class="expertise-card__meta">
-                            <span class="expertise-card__index font-mono text-xs font-bold tracking-widest">(01 / BUILD)</span>
+                            <span class="expertise-card__index font-mono text-xs font-bold tracking-widest">(01 /
+                                BUILD)</span>
                             <span class="expertise-card__icon">
-                                <i data-lucide="code-xml" id="acc1-icon" class="w-5 h-5 transition-transform duration-300" aria-hidden="true"></i>
+                                <i data-lucide="code-xml" id="acc1-icon"
+                                    class="w-5 h-5 transition-transform duration-300" aria-hidden="true"></i>
                             </span>
                         </div>
-                        <h3 class="expertise-card__title font-display tracking-tight uppercase">SOFTWARE DEVELOPMENT</h3>
-                        <span class="expertise-card__hint">View capability <i data-lucide="arrow-down-right" class="w-3 h-3" aria-hidden="true"></i></span>
+                        <h3 class="expertise-card__title font-display tracking-tight uppercase">SOFTWARE DEVELOPMENT
+                        </h3>
+                        <span class="expertise-card__hint">View capability <i data-lucide="arrow-down-right"
+                                class="w-3 h-3" aria-hidden="true"></i></span>
                     </button>
                     <div id="acc1" class="expertise-card__details" aria-hidden="false">
                         <div class="expertise-card__details-inner">
                             <p class="text-ink font-medium text-lg mb-2">I build reliable, maintainable backends and
                                 mission-critical APIs.</p>
-                            <p class="text-muted text-sm leading-relaxed">I develop microservices using Python, FastAPI, and
+                            <p class="text-muted text-sm leading-relaxed">I develop microservices using Python, FastAPI,
+                                and
                                 Java, and specialize in secure REST APIs, scheduling workflows, and optimized queries
                                 across PostgreSQL, Supabase, and MySQL.</p>
                         </div>
@@ -2327,20 +2383,25 @@
 
                 <!-- 02 -->
                 <article class="expertise-card is-collapsed">
-                    <button onclick="toggleAccordion('acc2')"
-                        class="expertise-card__button w-full text-left group" aria-expanded="false" aria-controls="acc2">
+                    <button onclick="toggleAccordion('acc2')" class="expertise-card__button w-full text-left group"
+                        aria-expanded="false" aria-controls="acc2">
                         <div class="expertise-card__meta">
-                            <span class="expertise-card__index font-mono text-xs font-bold tracking-widest">(02 / INTELLIGENCE)</span>
+                            <span class="expertise-card__index font-mono text-xs font-bold tracking-widest">(02 /
+                                INTELLIGENCE)</span>
                             <span class="expertise-card__icon">
-                                <i data-lucide="brain-circuit" id="acc2-icon" class="w-5 h-5 transition-transform duration-300" aria-hidden="true"></i>
+                                <i data-lucide="brain-circuit" id="acc2-icon"
+                                    class="w-5 h-5 transition-transform duration-300" aria-hidden="true"></i>
                             </span>
                         </div>
-                        <h3 class="expertise-card__title font-display tracking-tight uppercase">ARTIFICIAL INTELLIGENCE</h3>
-                        <span class="expertise-card__hint">View capability <i data-lucide="arrow-down-right" class="w-3 h-3" aria-hidden="true"></i></span>
+                        <h3 class="expertise-card__title font-display tracking-tight uppercase">ARTIFICIAL INTELLIGENCE
+                        </h3>
+                        <span class="expertise-card__hint">View capability <i data-lucide="arrow-down-right"
+                                class="w-3 h-3" aria-hidden="true"></i></span>
                     </button>
                     <div id="acc2" class="expertise-card__details" aria-hidden="true">
                         <div class="expertise-card__details-inner">
-                            <p class="text-ink font-medium text-lg mb-2">I build context-aware desktop automation and voice
+                            <p class="text-ink font-medium text-lg mb-2">I build context-aware desktop automation and
+                                voice
                                 orchestration tools.</p>
                             <p class="text-muted text-sm leading-relaxed">I create voice-controlled assistants with
                                 SpeechRecognition, use OpenCV for screen capture and computer vision, and automate
@@ -2351,20 +2412,25 @@
 
                 <!-- 03 -->
                 <article class="expertise-card is-collapsed">
-                    <button onclick="toggleAccordion('acc3')"
-                        class="expertise-card__button w-full text-left group" aria-expanded="false" aria-controls="acc3">
+                    <button onclick="toggleAccordion('acc3')" class="expertise-card__button w-full text-left group"
+                        aria-expanded="false" aria-controls="acc3">
                         <div class="expertise-card__meta">
-                            <span class="expertise-card__index font-mono text-xs font-bold tracking-widest">(03 / WEB)</span>
+                            <span class="expertise-card__index font-mono text-xs font-bold tracking-widest">(03 /
+                                WEB)</span>
                             <span class="expertise-card__icon">
-                                <i data-lucide="panels-top-left" id="acc3-icon" class="w-5 h-5 transition-transform duration-300" aria-hidden="true"></i>
+                                <i data-lucide="panels-top-left" id="acc3-icon"
+                                    class="w-5 h-5 transition-transform duration-300" aria-hidden="true"></i>
                             </span>
                         </div>
-                        <h3 class="expertise-card__title font-display tracking-tight uppercase">FULL-STACK WEB DEVELOPMENT</h3>
-                        <span class="expertise-card__hint">View capability <i data-lucide="arrow-down-right" class="w-3 h-3" aria-hidden="true"></i></span>
+                        <h3 class="expertise-card__title font-display tracking-tight uppercase">FULL-STACK WEB
+                            DEVELOPMENT</h3>
+                        <span class="expertise-card__hint">View capability <i data-lucide="arrow-down-right"
+                                class="w-3 h-3" aria-hidden="true"></i></span>
                     </button>
                     <div id="acc3" class="expertise-card__details" aria-hidden="true">
                         <div class="expertise-card__details-inner">
-                            <p class="text-ink font-medium text-lg mb-2">I build responsive, interactive interfaces and pair
+                            <p class="text-ink font-medium text-lg mb-2">I build responsive, interactive interfaces and
+                                pair
                                 them with clean API layers.</p>
                             <p class="text-muted text-sm leading-relaxed">I build modern front ends with React.js and
                                 Tailwind CSS, using Leaflet for dynamic GIS mapping in ambulance-routing and dispatch
@@ -2411,8 +2477,8 @@
 
                 <div class="flex flex-col items-center justify-center">
                     <div class="w-56 h-56 rounded-full overflow-hidden border-4 border-white shadow-2xl relative">
-                        <img src="assets/vinarm-verma.png"
-                            alt="Portrait of Vinarm Verma" class="w-full h-full object-cover" />
+                        <img src="assets/vinarm-verma.png" alt="Portrait of Vinarm Verma"
+                            class="w-full h-full object-cover" />
                     </div>
                     <span
                         class="mt-4 px-4 py-1.5 rounded-full bg-white shadow-md font-mono text-[11px] font-bold tracking-widest text-ink">
@@ -2450,47 +2516,97 @@
 
             <div class="skills-showcase">
                 <div class="skills-showcase__visual">
-                    <div class="tech-orbit" role="group" aria-label="Rotating technology stack. Select a technology for details." tabindex="0">
+                    <div class="tech-orbit" role="group"
+                        aria-label="Rotating technology stack. Select a technology for details." tabindex="0">
                         <div class="tech-orbit__stage">
                             <div class="tech-orbit__cell">
-                                <div class="tech-orbit__ring tech-orbit__ring--languages" role="group" aria-label="Programming languages">
-                                    <button class="tech-orbit__node" type="button" data-tech="python" aria-label="View Python details" style="--angle: 0deg"><span class="tech-orbit__label">Python</span></button>
-                                    <button class="tech-orbit__node" type="button" data-tech="java" aria-label="View Java details" style="--angle: 45deg"><span class="tech-orbit__label">Java</span></button>
-                                    <button class="tech-orbit__node" type="button" data-tech="sql" aria-label="View SQL details" style="--angle: 90deg"><span class="tech-orbit__label">SQL</span></button>
-                                    <button class="tech-orbit__node" type="button" data-tech="apex" aria-label="View Apex details" style="--angle: 135deg"><span class="tech-orbit__label">Apex</span></button>
-                                    <button class="tech-orbit__node" type="button" data-tech="c" aria-label="View C details" style="--angle: 180deg"><span class="tech-orbit__label">C</span></button>
-                                    <button class="tech-orbit__node" type="button" data-tech="javascript" aria-label="View JavaScript details" style="--angle: 225deg"><span class="tech-orbit__label">JavaScript</span></button>
-                                    <button class="tech-orbit__node" type="button" data-tech="html5" aria-label="View HTML5 details" style="--angle: 270deg"><span class="tech-orbit__label">HTML5</span></button>
-                                    <button class="tech-orbit__node" type="button" data-tech="css3" aria-label="View CSS3 details" style="--angle: 315deg"><span class="tech-orbit__label">CSS3</span></button>
+                                <div class="tech-orbit__ring tech-orbit__ring--languages" role="group"
+                                    aria-label="Programming languages">
+                                    <button class="tech-orbit__node" type="button" data-tech="python"
+                                        aria-label="View Python details" style="--angle: 0deg"><span
+                                            class="tech-orbit__label">Python</span></button>
+                                    <button class="tech-orbit__node" type="button" data-tech="java"
+                                        aria-label="View Java details" style="--angle: 45deg"><span
+                                            class="tech-orbit__label">Java</span></button>
+                                    <button class="tech-orbit__node" type="button" data-tech="sql"
+                                        aria-label="View SQL details" style="--angle: 90deg"><span
+                                            class="tech-orbit__label">SQL</span></button>
+                                    <button class="tech-orbit__node" type="button" data-tech="apex"
+                                        aria-label="View Apex details" style="--angle: 135deg"><span
+                                            class="tech-orbit__label">Apex</span></button>
+                                    <button class="tech-orbit__node" type="button" data-tech="c"
+                                        aria-label="View C details" style="--angle: 180deg"><span
+                                            class="tech-orbit__label">C</span></button>
+                                    <button class="tech-orbit__node" type="button" data-tech="javascript"
+                                        aria-label="View JavaScript details" style="--angle: 225deg"><span
+                                            class="tech-orbit__label">JavaScript</span></button>
+                                    <button class="tech-orbit__node" type="button" data-tech="html5"
+                                        aria-label="View HTML5 details" style="--angle: 270deg"><span
+                                            class="tech-orbit__label">HTML5</span></button>
+                                    <button class="tech-orbit__node" type="button" data-tech="css3"
+                                        aria-label="View CSS3 details" style="--angle: 315deg"><span
+                                            class="tech-orbit__label">CSS3</span></button>
                                 </div>
                             </div>
                             <div class="tech-orbit__cell">
-                                <div class="tech-orbit__ring tech-orbit__ring--tools" role="group" aria-label="Data and development tools">
-                                    <button class="tech-orbit__node" type="button" data-tech="power-bi" aria-label="View Power BI details" style="--angle: 0deg"><span class="tech-orbit__label">Power BI</span></button>
-                                    <button class="tech-orbit__node" type="button" data-tech="git-github" aria-label="View Git and GitHub details" style="--angle: 60deg"><span class="tech-orbit__label">Git / GitHub</span></button>
-                                    <button class="tech-orbit__node" type="button" data-tech="rest-apis" aria-label="View REST APIs details" style="--angle: 120deg"><span class="tech-orbit__label">REST APIs</span></button>
-                                    <button class="tech-orbit__node" type="button" data-tech="leaflet" aria-label="View Leaflet details" style="--angle: 180deg"><span class="tech-orbit__label">Leaflet</span></button>
-                                    <button class="tech-orbit__node" type="button" data-tech="data-analysis" aria-label="View data analysis details" style="--angle: 240deg"><span class="tech-orbit__label">Data Analysis</span></button>
-                                    <button class="tech-orbit__node" type="button" data-tech="database-management" aria-label="View database management details" style="--angle: 300deg"><span class="tech-orbit__label">Database Management</span></button>
+                                <div class="tech-orbit__ring tech-orbit__ring--tools" role="group"
+                                    aria-label="Data and development tools">
+                                    <button class="tech-orbit__node" type="button" data-tech="power-bi"
+                                        aria-label="View Power BI details" style="--angle: 0deg"><span
+                                            class="tech-orbit__label">Power BI</span></button>
+                                    <button class="tech-orbit__node" type="button" data-tech="git-github"
+                                        aria-label="View Git and GitHub details" style="--angle: 60deg"><span
+                                            class="tech-orbit__label">Git / GitHub</span></button>
+                                    <button class="tech-orbit__node" type="button" data-tech="rest-apis"
+                                        aria-label="View REST APIs details" style="--angle: 120deg"><span
+                                            class="tech-orbit__label">REST APIs</span></button>
+                                    <button class="tech-orbit__node" type="button" data-tech="leaflet"
+                                        aria-label="View Leaflet details" style="--angle: 180deg"><span
+                                            class="tech-orbit__label">Leaflet</span></button>
+                                    <button class="tech-orbit__node" type="button" data-tech="data-analysis"
+                                        aria-label="View data analysis details" style="--angle: 240deg"><span
+                                            class="tech-orbit__label">Data Analysis</span></button>
+                                    <button class="tech-orbit__node" type="button" data-tech="database-management"
+                                        aria-label="View database management details" style="--angle: 300deg"><span
+                                            class="tech-orbit__label">Database Management</span></button>
                                 </div>
                             </div>
                             <div class="tech-orbit__cell">
-                                <div class="tech-orbit__ring tech-orbit__ring--frameworks" role="group" aria-label="Frameworks">
-                                    <button class="tech-orbit__node" type="button" data-tech="react" aria-label="View React.js details" style="--angle: 0deg"><span class="tech-orbit__label">React.js</span></button>
-                                    <button class="tech-orbit__node" type="button" data-tech="fastapi" aria-label="View FastAPI details" style="--angle: 72deg"><span class="tech-orbit__label">FastAPI</span></button>
-                                    <button class="tech-orbit__node" type="button" data-tech="opencv" aria-label="View OpenCV details" style="--angle: 144deg"><span class="tech-orbit__label">OpenCV</span></button>
-                                    <button class="tech-orbit__node" type="button" data-tech="spring" aria-label="View Spring Framework details" style="--angle: 216deg"><span class="tech-orbit__label">Spring Framework</span></button>
-                                    <button class="tech-orbit__node" type="button" data-tech="tailwind-css" aria-label="View Tailwind CSS details" style="--angle: 288deg"><span class="tech-orbit__label">Tailwind CSS</span></button>
+                                <div class="tech-orbit__ring tech-orbit__ring--frameworks" role="group"
+                                    aria-label="Frameworks">
+                                    <button class="tech-orbit__node" type="button" data-tech="react"
+                                        aria-label="View React.js details" style="--angle: 0deg"><span
+                                            class="tech-orbit__label">React.js</span></button>
+                                    <button class="tech-orbit__node" type="button" data-tech="fastapi"
+                                        aria-label="View FastAPI details" style="--angle: 72deg"><span
+                                            class="tech-orbit__label">FastAPI</span></button>
+                                    <button class="tech-orbit__node" type="button" data-tech="opencv"
+                                        aria-label="View OpenCV details" style="--angle: 144deg"><span
+                                            class="tech-orbit__label">OpenCV</span></button>
+                                    <button class="tech-orbit__node" type="button" data-tech="spring"
+                                        aria-label="View Spring Framework details" style="--angle: 216deg"><span
+                                            class="tech-orbit__label">Spring Framework</span></button>
+                                    <button class="tech-orbit__node" type="button" data-tech="tailwind-css"
+                                        aria-label="View Tailwind CSS details" style="--angle: 288deg"><span
+                                            class="tech-orbit__label">Tailwind CSS</span></button>
                                 </div>
                             </div>
                             <div class="tech-orbit__cell">
-                                <div class="tech-orbit__ring tech-orbit__ring--databases" role="group" aria-label="Databases">
-                                    <button class="tech-orbit__node" type="button" data-tech="postgresql" aria-label="View PostgreSQL details" style="--angle: 0deg"><span class="tech-orbit__label">PostgreSQL</span></button>
-                                    <button class="tech-orbit__node" type="button" data-tech="supabase" aria-label="View Supabase details" style="--angle: 120deg"><span class="tech-orbit__label">Supabase</span></button>
-                                    <button class="tech-orbit__node" type="button" data-tech="mysql" aria-label="View MySQL details" style="--angle: 240deg"><span class="tech-orbit__label">MySQL</span></button>
+                                <div class="tech-orbit__ring tech-orbit__ring--databases" role="group"
+                                    aria-label="Databases">
+                                    <button class="tech-orbit__node" type="button" data-tech="postgresql"
+                                        aria-label="View PostgreSQL details" style="--angle: 0deg"><span
+                                            class="tech-orbit__label">PostgreSQL</span></button>
+                                    <button class="tech-orbit__node" type="button" data-tech="supabase"
+                                        aria-label="View Supabase details" style="--angle: 120deg"><span
+                                            class="tech-orbit__label">Supabase</span></button>
+                                    <button class="tech-orbit__node" type="button" data-tech="mysql"
+                                        aria-label="View MySQL details" style="--angle: 240deg"><span
+                                            class="tech-orbit__label">MySQL</span></button>
                                 </div>
                             </div>
-                            <div class="tech-orbit__hub" role="img" aria-label="Vinarm Verma's technology stack, 22 technologies">
+                            <div class="tech-orbit__hub" role="img"
+                                aria-label="Vinarm Verma's technology stack, 22 technologies">
                                 <span class="tech-orbit__hub-name">VINARM</span>
                                 <span class="tech-orbit__hub-name">VERMA</span>
                                 <span class="tech-orbit__hub-label">TECH STACK</span>
@@ -2498,54 +2614,77 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tech-orbit-legend mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-[10px] font-bold uppercase tracking-widest text-muted">
-                        <span class="flex items-center gap-2"><i class="h-2 w-2 rounded-full bg-vermilion"></i>Languages</span>
-                        <span class="flex items-center gap-2"><i class="h-2 w-2 rounded-full bg-signature"></i>Tools</span>
-                        <span class="flex items-center gap-2"><i class="h-2 w-2 rounded-full bg-coral"></i>Frameworks</span>
-                        <span class="flex items-center gap-2"><i class="h-2 w-2 rounded-full bg-muted"></i>Databases</span>
+                    <div
+                        class="tech-orbit-legend mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-[10px] font-bold uppercase tracking-widest text-muted">
+                        <span class="flex items-center gap-2"><i
+                                class="h-2 w-2 rounded-full bg-vermilion"></i>Languages</span>
+                        <span class="flex items-center gap-2"><i
+                                class="h-2 w-2 rounded-full bg-signature"></i>Tools</span>
+                        <span class="flex items-center gap-2"><i
+                                class="h-2 w-2 rounded-full bg-coral"></i>Frameworks</span>
+                        <span class="flex items-center gap-2"><i
+                                class="h-2 w-2 rounded-full bg-muted"></i>Databases</span>
                     </div>
                 </div>
 
                 <aside class="tech-overview">
-                    <span class="relative font-mono text-[10px] font-bold tracking-[0.2em] text-vermilion uppercase">// BUILT TO CONNECT</span>
-                    <h3 class="relative mt-4 font-display text-5xl sm:text-6xl leading-[0.95] text-ink uppercase">From idea<br>to experience.</h3>
-                    <p class="relative mt-5 max-w-md text-sm leading-7 text-muted">A practical toolkit for building complete products—from shaping interfaces and services to organizing data and turning it into useful insight.</p>
+                    <span class="relative font-mono text-[10px] font-bold tracking-[0.2em] text-vermilion uppercase">//
+                        BUILT TO CONNECT</span>
+                    <h3 class="relative mt-4 font-display text-5xl sm:text-6xl leading-[0.95] text-ink uppercase">From
+                        idea<br>to experience.</h3>
+                    <p class="relative mt-5 max-w-md text-sm leading-7 text-muted">A practical toolkit for building
+                        complete products—from shaping interfaces and services to organizing data and turning it into
+                        useful insight.</p>
 
                     <div class="relative mt-7">
                         <div class="tech-overview__layer">
-                            <span class="font-mono text-[9px] font-bold tracking-[0.16em] text-vermilion uppercase">01 / Build</span>
-                            <p class="mt-1 text-sm font-semibold text-ink">Languages shape the logic and structure behind each feature.</p>
+                            <span class="font-mono text-[9px] font-bold tracking-[0.16em] text-vermilion uppercase">01 /
+                                Build</span>
+                            <p class="mt-1 text-sm font-semibold text-ink">Languages shape the logic and structure
+                                behind each feature.</p>
                         </div>
                         <div class="tech-overview__layer">
-                            <span class="font-mono text-[9px] font-bold tracking-[0.16em] text-signature uppercase">02 / Develop</span>
-                            <p class="mt-1 text-sm font-semibold text-ink">Frameworks and APIs connect responsive interfaces to useful services.</p>
+                            <span class="font-mono text-[9px] font-bold tracking-[0.16em] text-signature uppercase">02 /
+                                Develop</span>
+                            <p class="mt-1 text-sm font-semibold text-ink">Frameworks and APIs connect responsive
+                                interfaces to useful services.</p>
                         </div>
                         <div class="tech-overview__layer">
-                            <span class="font-mono text-[9px] font-bold tracking-[0.16em] text-muted uppercase">03 / Organize</span>
-                            <p class="mt-1 text-sm font-semibold text-ink">Databases and analysis tools help make information clear and actionable.</p>
+                            <span class="font-mono text-[9px] font-bold tracking-[0.16em] text-muted uppercase">03 /
+                                Organize</span>
+                            <p class="mt-1 text-sm font-semibold text-ink">Databases and analysis tools help make
+                                information clear and actionable.</p>
                         </div>
                     </div>
 
                     <div class="relative mt-6 flex items-center justify-between gap-4 border-t border-divider/30 pt-5">
                         <div>
                             <strong class="font-display text-4xl leading-none text-ink">22</strong>
-                            <span class="ml-2 font-mono text-[9px] font-bold tracking-widest text-muted uppercase">Technologies</span>
+                            <span
+                                class="ml-2 font-mono text-[9px] font-bold tracking-widest text-muted uppercase">Technologies</span>
                         </div>
-                        <span class="rounded-full border border-signature/20 bg-white/70 px-3 py-2 font-mono text-[9px] font-bold tracking-widest text-ink uppercase">Select any orbit node ↗</span>
+                        <span
+                            class="rounded-full border border-signature/20 bg-white/70 px-3 py-2 font-mono text-[9px] font-bold tracking-widest text-ink uppercase">Select
+                            any orbit node ↗</span>
                     </div>
                 </aside>
             </div>
         </div>
     </section>
 
-    <dialog id="tech-detail-dialog" class="tech-detail-dialog" aria-labelledby="tech-detail-title" aria-describedby="tech-detail-description">
+    <dialog id="tech-detail-dialog" class="tech-detail-dialog" aria-labelledby="tech-detail-title"
+        aria-describedby="tech-detail-description">
         <div class="tech-detail-dialog__card">
-            <button class="tech-detail-dialog__close" type="button" aria-label="Close technology details">&times;</button>
+            <button class="tech-detail-dialog__close" type="button"
+                aria-label="Close technology details">&times;</button>
             <p class="font-mono text-[10px] font-bold tracking-[0.2em] text-vermilion uppercase">Technology profile</p>
-            <span id="tech-detail-category" class="mt-5 inline-flex rounded-full border border-signature/20 bg-white/75 px-3 py-1.5 font-mono text-[9px] font-bold tracking-widest text-signature uppercase"></span>
+            <span id="tech-detail-category"
+                class="mt-5 inline-flex rounded-full border border-signature/20 bg-white/75 px-3 py-1.5 font-mono text-[9px] font-bold tracking-widest text-signature uppercase"></span>
             <h3 id="tech-detail-title" class="mt-3 font-display text-6xl leading-none text-ink uppercase"></h3>
             <p id="tech-detail-description" class="relative z-[1] mt-5 max-w-prose text-sm leading-7 text-muted"></p>
-            <p class="relative z-[1] mt-7 border-t border-divider/30 pt-5 font-mono text-[9px] font-bold tracking-widest text-muted uppercase">Part of the VINARM VERMA technology stack</p>
+            <p
+                class="relative z-[1] mt-7 border-t border-divider/30 pt-5 font-mono text-[9px] font-bold tracking-widest text-muted uppercase">
+                Part of the VINARM VERMA technology stack</p>
         </div>
     </dialog>
 
@@ -2585,7 +2724,8 @@
                             role-based dashboards.
                         </p>
                         <ul class="text-muted text-sm mb-6 list-disc pl-5 space-y-1">
-                            <li>The platform integrates REST APIs with dynamic Leaflet maps for resource tracking and ambulance
+                            <li>The platform integrates REST APIs with dynamic Leaflet maps for resource tracking and
+                                ambulance
                                 dispatch.</li>
                             <li>It centralizes hospital capacity and incident updates to support faster response times.
                             </li>
@@ -2661,7 +2801,8 @@
                         <ul class="text-muted text-sm mb-6 list-disc pl-5 space-y-1">
                             <li>The platform includes a campus knowledge-search and question-answering system powered by
                                 retrieval-augmented generation.</li>
-                            <li>It brings campus notices, events, deadlines, and student updates together in one place.</li>
+                            <li>It brings campus notices, events, deadlines, and student updates together in one place.
+                            </li>
                         </ul>
                         <div
                             class="flex flex-wrap gap-2 pt-2 border-t border-divider/20 font-mono text-[10px] font-bold uppercase">
@@ -2678,8 +2819,8 @@
                 <div
                     class="project-card group bg-white rounded-3xl overflow-hidden border border-divider/40 shadow-sm hover:shadow-2xl transition-all">
                     <div class="relative aspect-[16/10] overflow-hidden bg-ink flex items-center justify-center">
-                        <a href="https://github.com/Vinarm-Verma/local-buisness-app" target="_blank" rel="noopener noreferrer"
-                            aria-label="View Local Business App on GitHub"
+                        <a href="https://github.com/Vinarm-Verma/local-buisness-app" target="_blank"
+                            rel="noopener noreferrer" aria-label="View Local Business App on GitHub"
                             class="project-name font-display text-3xl sm:text-4xl font-bold tracking-wide text-white hover:text-vermilion transition-colors text-center">
                             LOCAL BUSINESS APP
                         </a>
@@ -2754,8 +2895,12 @@
     <section id="journey" class="py-24 border-t border-divider/40">
         <div class="max-w-7xl mx-auto px-6 sm:px-8">
             <div class="mb-16">
-                <span class="journey-kicker font-mono text-xs font-bold tracking-widest text-vermilion uppercase mb-4">// CAREER TIMELINE</span>
-                <h2 class="journey-heading font-display text-6xl sm:text-7xl lg:text-8xl text-ink uppercase tracking-tight">EXPERIENCE
+                <span
+                    class="journey-kicker font-mono text-xs font-bold tracking-widest text-vermilion uppercase mb-4">//
+                    CAREER TIMELINE</span>
+                <h2
+                    class="journey-heading font-display text-6xl sm:text-7xl lg:text-8xl text-ink uppercase tracking-tight">
+                    EXPERIENCE
                     &amp; HONORS</h2>
             </div>
 
@@ -2765,7 +2910,8 @@
                         <div class="journey-entry__top flex justify-between items-baseline mb-5">
                             <h4 class="font-display text-3xl uppercase text-ink">Summer Intern &bull; <span
                                     class="text-vermilion">Decodelabs</span></h4>
-                            <span class="journey-date font-mono text-xs font-bold px-3 py-1 rounded-full">May 2026 &ndash;
+                            <span class="journey-date font-mono text-xs font-bold px-3 py-1 rounded-full">May 2026
+                                &ndash;
                                 Present</span>
                         </div>
                         <p class="journey-location font-mono text-xs mb-5">Agra, Uttar Pradesh</p>
@@ -2783,7 +2929,8 @@
                         <div class="journey-entry__top flex justify-between items-baseline mb-5">
                             <h4 class="font-display text-3xl uppercase text-ink">Engineer Intern &bull; <span
                                     class="text-vermilion">Codec Technologies</span></h4>
-                            <span class="journey-date font-mono text-xs font-bold px-3 py-1 rounded-full">Jun 2026 &ndash;
+                            <span class="journey-date font-mono text-xs font-bold px-3 py-1 rounded-full">Jun 2026
+                                &ndash;
                                 Jul 2026</span>
                         </div>
                         <p class="journey-location font-mono text-xs mb-5">Agra, Uttar Pradesh</p>
@@ -2802,7 +2949,8 @@
                             <h4 class="font-display text-3xl uppercase text-ink">Senior Public Relations Head &bull;
                                 <span class="text-vermilion">LITSOC</span>
                             </h4>
-                            <span class="journey-date font-mono text-xs font-bold px-3 py-1 rounded-full">Aug 2026 &ndash;
+                            <span class="journey-date font-mono text-xs font-bold px-3 py-1 rounded-full">Aug 2026
+                                &ndash;
                                 Present</span>
                         </div>
                         <p class="journey-location font-mono text-xs mb-5">Agra, Uttar Pradesh</p>
@@ -2818,43 +2966,74 @@
                     aria-label="Expand the 18-certificate orbit, featuring AI and data, software and cloud, and competitions and leadership credentials"
                     aria-haspopup="dialog" aria-expanded="false" aria-controls="journey-certificate-dialog"
                     onclick="openCertificateOrbit()">
-                    <span class="journey-certificate-orbit__detail journey-certificate-orbit__detail--left" aria-hidden="true">
+                    <span class="journey-certificate-orbit__detail journey-certificate-orbit__detail--left"
+                        aria-hidden="true">
                         <span class="journey-certificate-orbit__detail-kicker">Learning collection / 01</span>
                         <span class="journey-certificate-orbit__detail-title">Skills in motion</span>
-                        <span class="journey-certificate-orbit__detail-copy">A growing set of certificates, workshops and hands-on learning milestones.</span>
+                        <span class="journey-certificate-orbit__detail-copy">A growing set of certificates, workshops
+                            and hands-on learning milestones.</span>
                         <span class="journey-certificate-orbit__detail-tags">
                             <span>AI</span><span>Data</span><span>Cloud</span>
                         </span>
                     </span>
                     <span class="journey-certificate-orbit__watermark" aria-hidden="true">VINARM VERMA</span>
                     <div class="journey-certificate-orbit__stage">
-                        <img class="journey-certificate-orbit__card" src="assets/credentials/bharatiya-antariksh-hackathon.jpeg" alt="" loading="lazy" decoding="async" style="--certificate-index: 0">
-                        <img class="journey-certificate-orbit__card" src="assets/credentials/operations-management.jpeg" alt="" loading="lazy" decoding="async" style="--certificate-index: 1">
-                        <img class="journey-certificate-orbit__card" src="assets/credentials/icat-participation.jpeg" alt="" loading="lazy" decoding="async" style="--certificate-index: 2">
-                        <img class="journey-certificate-orbit__card" src="assets/credentials/tareekh-pe-tareekh.jpeg" alt="" loading="lazy" decoding="async" style="--certificate-index: 3">
-                        <img class="journey-certificate-orbit__card" src="assets/credentials/be10x-ai-tools-workshop.jpeg" alt="" loading="lazy" decoding="async" style="--certificate-index: 4">
-                        <img class="journey-certificate-orbit__card" src="assets/credentials/skillsmint-data-analyst.jpeg" alt="" loading="lazy" decoding="async" style="--certificate-index: 5">
-                        <img class="journey-certificate-orbit__card" src="assets/credentials/quiet-power-quiz.jpeg" alt="" loading="lazy" decoding="async" style="--certificate-index: 6">
-                        <img class="journey-certificate-orbit__card" src="assets/credentials/tixu-master-of-claude.jpeg" alt="" loading="lazy" decoding="async" style="--certificate-index: 7">
-                        <img class="journey-certificate-orbit__card" src="assets/credentials/officemaster-powerbi-workshop.jpeg" alt="" loading="lazy" decoding="async" style="--certificate-index: 8">
-                        <img class="journey-certificate-orbit__card" src="assets/credentials/mybharat-young-leaders-quiz.jpeg" alt="" loading="lazy" decoding="async" style="--certificate-index: 9">
-                        <img class="journey-certificate-orbit__card" src="assets/credentials/gyan-jyoti-robo-war.jpeg" alt="" loading="lazy" decoding="async" style="--certificate-index: 10">
-                        <img class="journey-certificate-orbit__card" src="assets/credentials/ibm-ai-fundamentals.jpeg" alt="" loading="lazy" decoding="async" style="--certificate-index: 11">
-                        <img class="journey-certificate-orbit__card" src="assets/credentials/aws-cloud-essentials.jpeg" alt="" loading="lazy" decoding="async" style="--certificate-index: 12">
-                        <img class="journey-certificate-orbit__card" src="assets/credentials/forage-genai-proposal-simulation.jpeg" alt="" loading="lazy" decoding="async" style="--certificate-index: 13">
-                        <img class="journey-certificate-orbit__card" src="assets/credentials/ai-for-techies-python-workshop.jpeg" alt="" loading="lazy" decoding="async" style="--certificate-index: 14">
-                        <img class="journey-certificate-orbit__card" src="assets/credentials/tcs-legacy-modernization.jpeg" alt="" loading="lazy" decoding="async" style="--certificate-index: 15">
-                        <img class="journey-certificate-orbit__card" src="assets/credentials/codec-ai-internship.jpeg" alt="" loading="lazy" decoding="async" style="--certificate-index: 16">
-                        <img class="journey-certificate-orbit__card" src="assets/credentials/skillbrew-prompt-engineering.jpeg" alt="" loading="lazy" decoding="async" style="--certificate-index: 17">
+                        <img class="journey-certificate-orbit__card"
+                            src="assets/credentials/bharatiya-antariksh-hackathon.jpeg" alt="" loading="lazy"
+                            decoding="async" style="--certificate-index: 0">
+                        <img class="journey-certificate-orbit__card" src="assets/credentials/operations-management.jpeg"
+                            alt="" loading="lazy" decoding="async" style="--certificate-index: 1">
+                        <img class="journey-certificate-orbit__card" src="assets/credentials/icat-participation.jpeg"
+                            alt="" loading="lazy" decoding="async" style="--certificate-index: 2">
+                        <img class="journey-certificate-orbit__card" src="assets/credentials/tareekh-pe-tareekh.jpeg"
+                            alt="" loading="lazy" decoding="async" style="--certificate-index: 3">
+                        <img class="journey-certificate-orbit__card"
+                            src="assets/credentials/be10x-ai-tools-workshop.jpeg" alt="" loading="lazy" decoding="async"
+                            style="--certificate-index: 4">
+                        <img class="journey-certificate-orbit__card"
+                            src="assets/credentials/skillsmint-data-analyst.jpeg" alt="" loading="lazy" decoding="async"
+                            style="--certificate-index: 5">
+                        <img class="journey-certificate-orbit__card" src="assets/credentials/quiet-power-quiz.jpeg"
+                            alt="" loading="lazy" decoding="async" style="--certificate-index: 6">
+                        <img class="journey-certificate-orbit__card" src="assets/credentials/tixu-master-of-claude.jpeg"
+                            alt="" loading="lazy" decoding="async" style="--certificate-index: 7">
+                        <img class="journey-certificate-orbit__card"
+                            src="assets/credentials/officemaster-powerbi-workshop.jpeg" alt="" loading="lazy"
+                            decoding="async" style="--certificate-index: 8">
+                        <img class="journey-certificate-orbit__card"
+                            src="assets/credentials/mybharat-young-leaders-quiz.jpeg" alt="" loading="lazy"
+                            decoding="async" style="--certificate-index: 9">
+                        <img class="journey-certificate-orbit__card" src="assets/credentials/gyan-jyoti-robo-war.jpeg"
+                            alt="" loading="lazy" decoding="async" style="--certificate-index: 10">
+                        <img class="journey-certificate-orbit__card" src="assets/credentials/ibm-ai-fundamentals.jpeg"
+                            alt="" loading="lazy" decoding="async" style="--certificate-index: 11">
+                        <img class="journey-certificate-orbit__card" src="assets/credentials/aws-cloud-essentials.jpeg"
+                            alt="" loading="lazy" decoding="async" style="--certificate-index: 12">
+                        <img class="journey-certificate-orbit__card"
+                            src="assets/credentials/forage-genai-proposal-simulation.jpeg" alt="" loading="lazy"
+                            decoding="async" style="--certificate-index: 13">
+                        <img class="journey-certificate-orbit__card"
+                            src="assets/credentials/ai-for-techies-python-workshop.jpeg" alt="" loading="lazy"
+                            decoding="async" style="--certificate-index: 14">
+                        <img class="journey-certificate-orbit__card"
+                            src="assets/credentials/tcs-legacy-modernization.jpeg" alt="" loading="lazy"
+                            decoding="async" style="--certificate-index: 15">
+                        <img class="journey-certificate-orbit__card" src="assets/credentials/codec-ai-internship.jpeg"
+                            alt="" loading="lazy" decoding="async" style="--certificate-index: 16">
+                        <img class="journey-certificate-orbit__card"
+                            src="assets/credentials/skillbrew-prompt-engineering.jpeg" alt="" loading="lazy"
+                            decoding="async" style="--certificate-index: 17">
                     </div>
                     <div class="journey-certificate-orbit__hub">
                         <strong>18</strong>
                         <span>Credentials</span>
                     </div>
-                    <span class="journey-certificate-orbit__detail journey-certificate-orbit__detail--right" aria-hidden="true">
+                    <span class="journey-certificate-orbit__detail journey-certificate-orbit__detail--right"
+                        aria-hidden="true">
                         <span class="journey-certificate-orbit__detail-kicker">Explore the collection / 02</span>
                         <span class="journey-certificate-orbit__detail-title">Built beyond the classroom</span>
-                        <span class="journey-certificate-orbit__detail-copy">From GenAI and analytics to hackathons, robotics and leadership.</span>
+                        <span class="journey-certificate-orbit__detail-copy">From GenAI and analytics to hackathons,
+                            robotics and leadership.</span>
                         <span class="journey-certificate-orbit__detail-tags">
                             <span>Software</span><span>Innovation</span><span>Leadership</span>
                         </span>
@@ -2863,129 +3042,135 @@
 
                 <div class="journey-lower-grid">
                     <div class="journey-card journey-panel journey-certifications">
-                        <h3
-                            class="journey-panel-title font-mono text-xs font-bold tracking-widest uppercase mb-4">
+                        <h3 class="journey-panel-title font-mono text-xs font-bold tracking-widest uppercase mb-4">
                             <i data-lucide="award" class="text-vermilion w-4 h-4"></i>
                             <span>VERIFIED CERTIFICATIONS</span>
                         </h3>
 
                         <div class="journey-cert-list">
-                        <div class="journey-card journey-cert-card journey-cert-card--aws">
-                            <div class="journey-cert-card__content">
-                                <p class="font-bold text-sm">AWS Cloud Essentials</p>
-                                <p class="text-xs text-muted">Amazon Web Services &bull; Sep 2026</p>
+                            <div class="journey-card journey-cert-card journey-cert-card--aws">
+                                <div class="journey-cert-card__content">
+                                    <p class="font-bold text-sm">AWS Cloud Essentials</p>
+                                    <p class="text-xs text-muted">Amazon Web Services &bull; Sep 2026</p>
+                                </div>
                             </div>
-                        </div>
-                        <a class="journey-card journey-cert-card"
-                            href="https://oaiacademy.credential.net/93d9a5f8-bcd7-475b-8baf-b376248f3368#acc.ISRXCy0z"
-                            target="_blank" rel="noopener noreferrer"
-                            aria-label="View AI Foundations certificate from OpenAI">
-                            <div class="journey-cert-card__content">
-                                <p class="font-bold text-sm">AI Foundations</p>
-                                <p class="text-xs text-muted">OpenAI &bull; Sep 2026 (ID: 195326344)</p>
+                            <a class="journey-card journey-cert-card"
+                                href="https://oaiacademy.credential.net/93d9a5f8-bcd7-475b-8baf-b376248f3368#acc.ISRXCy0z"
+                                target="_blank" rel="noopener noreferrer"
+                                aria-label="View AI Foundations certificate from OpenAI">
+                                <div class="journey-cert-card__content">
+                                    <p class="font-bold text-sm">AI Foundations</p>
+                                    <p class="text-xs text-muted">OpenAI &bull; Sep 2026 (ID: 195326344)</p>
+                                </div>
+                                <i data-lucide="external-link" class="journey-cert-card__link-icon w-4 h-4"
+                                    aria-hidden="true"></i>
+                            </a>
+                            <a class="journey-card journey-cert-card"
+                                href="https://www.hackerrank.com/certificates/iframe/da8007d0015f" target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="View Frontend Developer React certificate on HackerRank">
+                                <div class="journey-cert-card__content">
+                                    <p class="font-bold text-sm">Frontend Developer (React)</p>
+                                    <p class="text-xs text-muted">HackerRank &bull; Issued Oct 2026 &bull; Expires Nov
+                                        2036 (ID: DA8007D0015F)</p>
+                                </div>
+                                <i data-lucide="external-link" class="journey-cert-card__link-icon w-4 h-4"
+                                    aria-hidden="true"></i>
+                            </a>
+                            <a class="journey-card journey-cert-card"
+                                href="https://www.hackerrank.com/certificates/fec50ddfa2d0" target="_blank"
+                                rel="noopener noreferrer" aria-label="View Java Basic certificate on HackerRank">
+                                <div class="journey-cert-card__content">
+                                    <p class="font-bold text-sm">Java (Basic)</p>
+                                    <p class="text-xs text-muted">HackerRank &bull; Earned Sep 20, 2026 (ID:
+                                        FEC50DDFA2D0)</p>
+                                </div>
+                                <i data-lucide="external-link" class="journey-cert-card__link-icon w-4 h-4"
+                                    aria-hidden="true"></i>
+                            </a>
+                            <a class="journey-card journey-cert-card"
+                                href="https://www.hackerrank.com/certificates/516194652c2a" target="_blank"
+                                rel="noopener noreferrer" aria-label="View C Sharp Basic certificate on HackerRank">
+                                <div class="journey-cert-card__content">
+                                    <p class="font-bold text-sm">C# (Basic)</p>
+                                    <p class="text-xs text-muted">HackerRank &bull; Earned Sep 20, 2026 (ID:
+                                        516194652C2A)</p>
+                                </div>
+                                <i data-lucide="external-link" class="journey-cert-card__link-icon w-4 h-4"
+                                    aria-hidden="true"></i>
+                            </a>
+                            <div class="journey-card journey-cert-card">
+                                <div class="journey-cert-card__content">
+                                    <p class="font-bold text-sm">Generative AI</p>
+                                    <p class="text-xs text-muted">TCS iON &bull; Jun 2026 (ID: 277212-31014904-1016)</p>
+                                </div>
                             </div>
-                            <i data-lucide="external-link" class="journey-cert-card__link-icon w-4 h-4" aria-hidden="true"></i>
-                        </a>
-                        <a class="journey-card journey-cert-card"
-                            href="https://www.hackerrank.com/certificates/iframe/da8007d0015f"
-                            target="_blank" rel="noopener noreferrer"
-                            aria-label="View Frontend Developer React certificate on HackerRank">
-                            <div class="journey-cert-card__content">
-                                <p class="font-bold text-sm">Frontend Developer (React)</p>
-                                <p class="text-xs text-muted">HackerRank &bull; Issued Oct 2026 &bull; Expires Nov 2036 (ID: DA8007D0015F)</p>
+                            <a class="journey-card journey-cert-card"
+                                href="https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_69d66b9089ccbdef79549dc2_1784390535776_completion_certificate.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                aria-label="View Deloitte Data Analytics Job Simulation certificate">
+                                <div class="journey-cert-card__content">
+                                    <p class="font-bold text-sm">Data Analytics Job Simulation</p>
+                                    <p class="text-xs text-muted">Deloitte &bull; Jul 2026 (ID: FW7q7S47Zu3CbckcF)</p>
+                                </div>
+                                <i data-lucide="external-link" class="journey-cert-card__link-icon w-4 h-4"
+                                    aria-hidden="true"></i>
+                            </a>
+                            <div class="journey-card journey-cert-card">
+                                <div class="journey-cert-card__content">
+                                    <p class="font-bold text-sm">Gen AI-Powered Data Analytics</p>
+                                    <p class="text-xs text-muted">Tata Group &bull; Jul 2026 (ID:
+                                        6a5ee66fcfc7cbacb761d94c)</p>
+                                </div>
                             </div>
-                            <i data-lucide="external-link" class="journey-cert-card__link-icon w-4 h-4" aria-hidden="true"></i>
-                        </a>
-                        <a class="journey-card journey-cert-card"
-                            href="https://www.hackerrank.com/certificates/fec50ddfa2d0"
-                            target="_blank" rel="noopener noreferrer"
-                            aria-label="View Java Basic certificate on HackerRank">
-                            <div class="journey-cert-card__content">
-                                <p class="font-bold text-sm">Java (Basic)</p>
-                                <p class="text-xs text-muted">HackerRank &bull; Earned Sep 20, 2026 (ID: FEC50DDFA2D0)</p>
+                            <div class="journey-card journey-cert-card">
+                                <div class="journey-cert-card__content">
+                                    <p class="font-bold text-sm">Power BI Workshop</p>
+                                    <p class="text-xs text-muted">Be10x &bull; Jan 2026 (ID:
+                                        36a28147-6eed-47a5-8342-e5f926ebba61905111)</p>
+                                </div>
                             </div>
-                            <i data-lucide="external-link" class="journey-cert-card__link-icon w-4 h-4" aria-hidden="true"></i>
-                        </a>
-                        <a class="journey-card journey-cert-card"
-                            href="https://www.hackerrank.com/certificates/516194652c2a"
-                            target="_blank" rel="noopener noreferrer"
-                            aria-label="View C Sharp Basic certificate on HackerRank">
-                            <div class="journey-cert-card__content">
-                                <p class="font-bold text-sm">C# (Basic)</p>
-                                <p class="text-xs text-muted">HackerRank &bull; Earned Sep 20, 2026 (ID: 516194652C2A)</p>
+                            <div class="journey-card journey-cert-card">
+                                <div class="journey-cert-card__content">
+                                    <p class="font-bold text-sm">AI Fundamentals: Foundation for Understanding AI</p>
+                                    <p class="text-xs text-muted">IBM SkillsBuild &bull; Sep 2026</p>
+                                </div>
                             </div>
-                            <i data-lucide="external-link" class="journey-cert-card__link-icon w-4 h-4" aria-hidden="true"></i>
-                        </a>
-                        <div class="journey-card journey-cert-card">
-                            <div class="journey-cert-card__content">
-                                <p class="font-bold text-sm">Generative AI</p>
-                                <p class="text-xs text-muted">TCS iON &bull; Jun 2026 (ID: 277212-31014904-1016)</p>
-                            </div>
-                        </div>
-                        <a class="journey-card journey-cert-card"
-                            href="https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_69d66b9089ccbdef79549dc2_1784390535776_completion_certificate.pdf"
-                            target="_blank" rel="noopener noreferrer"
-                            aria-label="View Deloitte Data Analytics Job Simulation certificate">
-                            <div class="journey-cert-card__content">
-                                <p class="font-bold text-sm">Data Analytics Job Simulation</p>
-                                <p class="text-xs text-muted">Deloitte &bull; Jul 2026 (ID: FW7q7S47Zu3CbckcF)</p>
-                            </div>
-                            <i data-lucide="external-link" class="journey-cert-card__link-icon w-4 h-4" aria-hidden="true"></i>
-                        </a>
-                        <div class="journey-card journey-cert-card">
-                            <div class="journey-cert-card__content">
-                                <p class="font-bold text-sm">Gen AI-Powered Data Analytics</p>
-                                <p class="text-xs text-muted">Tata Group &bull; Jul 2026 (ID: 6a5ee66fcfc7cbacb761d94c)</p>
-                            </div>
-                        </div>
-                        <div class="journey-card journey-cert-card">
-                            <div class="journey-cert-card__content">
-                                <p class="font-bold text-sm">Power BI Workshop</p>
-                                <p class="text-xs text-muted">Be10x &bull; Jan 2026 (ID:
-                                    36a28147-6eed-47a5-8342-e5f926ebba61905111)</p>
-                            </div>
-                        </div>
-                        <div class="journey-card journey-cert-card">
-                            <div class="journey-cert-card__content">
-                                <p class="font-bold text-sm">AI Fundamentals: Foundation for Understanding AI</p>
-                                <p class="text-xs text-muted">IBM SkillsBuild &bull; Sep 2026</p>
-                            </div>
-                        </div>
                         </div>
                     </div>
                     <div class="journey-side-stack">
-                    <div class="journey-card journey-panel journey-education">
-                        <h3
-                            class="journey-panel-title font-mono text-xs font-bold tracking-widest uppercase mb-4">
-                            <i data-lucide="graduation-cap" class="text-vermilion w-4 h-4"></i>
-                            <span>EDUCATION</span>
-                        </h3>
-                        <div class="journey-card journey-school">
-                            <p class="font-bold text-sm">B.Tech, Information Technology</p>
-                            <p class="text-xs text-muted">Hindustan College of Science and Technology, Mathura &bull;
-                                2024&ndash;2028</p>
-                            <p class="text-xs text-muted mt-1">Senior PR Head, LITSOC; National Youth Day Competition
-                                Winner</p>
+                        <div class="journey-card journey-panel journey-education">
+                            <h3 class="journey-panel-title font-mono text-xs font-bold tracking-widest uppercase mb-4">
+                                <i data-lucide="graduation-cap" class="text-vermilion w-4 h-4"></i>
+                                <span>EDUCATION</span>
+                            </h3>
+                            <div class="journey-card journey-school">
+                                <p class="font-bold text-sm">B.Tech, Information Technology</p>
+                                <p class="text-xs text-muted">Hindustan College of Science and Technology, Mathura
+                                    &bull;
+                                    2024&ndash;2028</p>
+                                <p class="text-xs text-muted mt-1">Senior PR Head, LITSOC; National Youth Day
+                                    Competition
+                                    Winner</p>
+                            </div>
+                            <div class="journey-card journey-school">
+                                <p class="font-bold text-sm">Class XII, PCM &bull; 82.9%</p>
+                                <p class="text-xs text-muted">Holy Public School, Agra &bull; 2022&ndash;2024</p>
+                                <p class="text-xs text-muted mt-1">House Captain and Club President</p>
+                            </div>
+                            <div class="journey-card journey-school">
+                                <p class="font-bold text-sm">Class X &bull; 81.3%</p>
+                                <p class="text-xs text-muted">Holy Public School, Agra &bull; 2020&ndash;2022</p>
+                                <p class="text-xs text-muted mt-1">Class Representative and Skating Team Captain</p>
+                            </div>
                         </div>
-                        <div class="journey-card journey-school">
-                            <p class="font-bold text-sm">Class XII, PCM &bull; 82.9%</p>
-                            <p class="text-xs text-muted">Holy Public School, Agra &bull; 2022&ndash;2024</p>
-                            <p class="text-xs text-muted mt-1">House Captain and Club President</p>
+                        <div class="journey-card journey-panel journey-achievement">
+                            <h3 class="journey-panel-title font-mono text-xs font-bold tracking-widest uppercase">
+                                <i data-lucide="trophy" class="text-vermilion w-4 h-4"></i>
+                                <span>ACHIEVEMENT</span>
+                            </h3>
+                            <p class="mt-4 text-sm font-bold">Winner &mdash; National Youth Day Competition</p>
                         </div>
-                        <div class="journey-card journey-school">
-                            <p class="font-bold text-sm">Class X &bull; 81.3%</p>
-                            <p class="text-xs text-muted">Holy Public School, Agra &bull; 2020&ndash;2022</p>
-                            <p class="text-xs text-muted mt-1">Class Representative and Skating Team Captain</p>
-                        </div>
-                    </div>
-                    <div class="journey-card journey-panel journey-achievement">
-                        <h3
-                            class="journey-panel-title font-mono text-xs font-bold tracking-widest uppercase">
-                            <i data-lucide="trophy" class="text-vermilion w-4 h-4"></i>
-                            <span>ACHIEVEMENT</span>
-                        </h3>
-                        <p class="mt-4 text-sm font-bold">Winner &mdash; National Youth Day Competition</p>
-                    </div>
                     </div>
                 </div>
             </div>
@@ -3001,8 +3186,8 @@
                 </h2>
                 <p class="journey-certificate-dialog__hint">Move your pointer in any direction to steer the orbit</p>
             </div>
-            <button class="journey-certificate-dialog__close" type="button"
-                aria-label="Close certificate orbit" onclick="closeCertificateOrbit()">&times;</button>
+            <button class="journey-certificate-dialog__close" type="button" aria-label="Close certificate orbit"
+                onclick="closeCertificateOrbit()">&times;</button>
         </div>
         <div class="journey-certificate-dialog__scene">
             <span class="journey-certificate-dialog__watermark" aria-hidden="true">VINARM VERMA</span>
@@ -3027,9 +3212,11 @@
                 <h2
                     class="font-display text-7xl sm:text-8xl lg:text-9xl text-ink uppercase tracking-tight leading-none">
                     LET'S CONNECT</h2>
-                <p class="mt-5 inline-flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-widest text-muted">
+                <p
+                    class="mt-5 inline-flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-widest text-muted">
                     <span class="relative flex h-3 w-3">
-                        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-vermilion opacity-60"></span>
+                        <span
+                            class="absolute inline-flex h-full w-full animate-ping rounded-full bg-vermilion opacity-60"></span>
                         <span class="relative inline-flex h-3 w-3 rounded-full bg-vermilion"></span>
                     </span>
                     Open to projects, internships &amp; collaboration
@@ -3040,23 +3227,24 @@
 
             <div
                 class="contact-card grid grid-cols-1 lg:grid-cols-12 rounded-3xl overflow-hidden border border-divider/40 shadow-xl bg-white">
-                <div
-                    class="contact-card__intro lg:col-span-5 p-10 sm:p-14 text-white flex flex-col justify-between">
+                <div class="contact-card__intro lg:col-span-5 p-10 sm:p-14 text-white flex flex-col justify-between">
                     <span class="contact-card__glow" aria-hidden="true"></span>
                     <div>
                         <h3 class="font-display text-5xl uppercase tracking-tight leading-none">HAVE A PROJECT IN MIND?
                         </h3>
                         <p class="mt-4 text-white/90 text-sm leading-relaxed">
-                            I am open to technical internships, applied AI engineering roles, and collaborative projects.
+                            I am open to technical internships, applied AI engineering roles, and collaborative
+                            projects.
                         </p>
                     </div>
                     <div class="contact-portrait my-8 rounded-full border-4 border-white/40 shadow-2xl">
-                        <img src="assets/vinarm-verma.png"
-                            alt="Portrait of Vinarm Verma" class="h-full w-full rounded-full object-cover" />
+                        <img src="assets/vinarm-verma.png" alt="Portrait of Vinarm Verma"
+                            class="h-full w-full rounded-full object-cover" />
                     </div>
                     <div class="space-y-1 font-mono text-xs">
                         <p class="font-bold">Agra, Uttar Pradesh, India</p>
-                        <p><a href="mailto:vinarmverma95@gmail.com" class="contact-link inline-block">vinarmverma95@gmail.com</a>
+                        <p><a href="mailto:vinarmverma95@gmail.com"
+                                class="contact-link inline-block">vinarmverma95@gmail.com</a>
                         </p>
                         <p><a href="tel:+919045661289" class="contact-link inline-block">+91 90456 61289</a></p>
                     </div>
@@ -3069,18 +3257,24 @@
                             Message dispatched successfully! Vinarm will respond within 24 hours.
                         </div>
                         <div>
-                            <label for="contact-name" class="block font-mono text-xs font-bold text-ink uppercase mb-2">YOUR NAME</label>
-                            <input id="contact-name" name="name" type="text" autocomplete="name" placeholder="How should I address you?" required
+                            <label for="contact-name"
+                                class="block font-mono text-xs font-bold text-ink uppercase mb-2">YOUR NAME</label>
+                            <input id="contact-name" name="name" type="text" autocomplete="name"
+                                placeholder="How should I address you?" required
                                 class="contact-field w-full px-4 py-3 bg-surfaceMuted/50 border border-divider/40 rounded-xl text-ink text-sm outline-none" />
                         </div>
                         <div>
-                            <label for="contact-email" class="block font-mono text-xs font-bold text-ink uppercase mb-2">YOUR EMAIL</label>
-                            <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required
+                            <label for="contact-email"
+                                class="block font-mono text-xs font-bold text-ink uppercase mb-2">YOUR EMAIL</label>
+                            <input id="contact-email" name="email" type="email" autocomplete="email"
+                                placeholder="you@example.com" required
                                 class="contact-field w-full px-4 py-3 bg-surfaceMuted/50 border border-divider/40 rounded-xl text-ink text-sm outline-none" />
                         </div>
                         <div>
-                            <label for="contact-message" class="block font-mono text-xs font-bold text-ink uppercase mb-2">MESSAGE</label>
-                            <textarea id="contact-message" name="message" rows="4" placeholder="Tell me a little about what you have in mind..." required
+                            <label for="contact-message"
+                                class="block font-mono text-xs font-bold text-ink uppercase mb-2">MESSAGE</label>
+                            <textarea id="contact-message" name="message" rows="4"
+                                placeholder="Tell me a little about what you have in mind..." required
                                 class="contact-field w-full px-4 py-3 bg-surfaceMuted/50 border border-divider/40 rounded-xl text-ink text-sm outline-none resize-none"></textarea>
                         </div>
                         <button type="submit"
