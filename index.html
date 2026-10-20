@@ -2094,6 +2094,25 @@
             transform: none;
         }
 
+        .motion-ready .reveal-item.expertise-card.is-visible.is-scroll-highlight {
+            transform: perspective(1000px) rotateX(1deg) rotateY(-1.5deg) translateY(-5px);
+            border-color: rgba(255, 118, 95, 0.45);
+            box-shadow: 0 28px 60px rgba(17, 17, 17, 0.22), 0 0 34px rgba(255, 50, 31, 0.08);
+        }
+
+        .expertise-card.is-scroll-highlight::after {
+            transform: translate(-12px, 10px) scale(1.08);
+        }
+
+        .expertise-card.is-scroll-highlight .expertise-card__icon {
+            transform: translateY(-2px) rotate(-5deg);
+            background: rgba(255, 50, 31, 0.24);
+        }
+
+        .expertise-card.is-scroll-highlight .expertise-card__title {
+            transform: translateX(3px);
+        }
+
         @media (hover: hover) and (pointer: fine) {
             .motion-ready .reveal-item.is-visible.project-card:hover {
                 transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-6px);
@@ -3410,15 +3429,27 @@
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        if (entry.target.matches('#expertise .expertise-card')) {
-                            setExpertiseCardOpen(entry.target, true);
-                        }
                         observer.unobserve(entry.target);
                     }
                 });
             }, { threshold: 0.12, rootMargin: '0px 0px -4% 0px' });
 
             revealSections.forEach((target) => revealObserver.observe(target));
+
+            const expertiseUnfoldObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setExpertiseCardOpen(entry.target, true);
+                        entry.target.classList.add('is-scroll-highlight');
+                        window.setTimeout(() => {
+                            entry.target.classList.remove('is-scroll-highlight');
+                        }, 1100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+            expertiseCards.forEach((card) => expertiseUnfoldObserver.observe(card));
 
             revealGroups.forEach((group) => {
                 group.forEach((target, index) => {
